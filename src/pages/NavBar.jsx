@@ -8,30 +8,30 @@ function Navbar({ setPage }) {
           src="/Images/0001.png"
           className="h-10 w-auto hover:scale-105 transition-transform cursor-pointer"
           alt="Logo"
-          onClick={() => setPage("home")}
+          onClick={() => setPage("Acceuil")}
         />
 
         <ul className="flex justify-center space-x-8 text-white/50 font-medium">
           <li>
             <button
-              onClick={() => setPage("home")}
-              className="bg-red-800 px-6 py-2 rounded-full text-violet-400 transition-all duration-300 hover:text-white"
+              onClick={() => setPage("Acceuil")}
+              className="bg-red-800 px-6 py-2 rounded-full text-white transition-all duration-300 hover:text-white cursor-pointer"
             >
               Accueil
             </button>
           </li>
           <li>
             <button
-              onClick={() => setPage("profil")}
-              className="bg-red-800 px-6 py-2 rounded-full transition-all duration-300 hover:text-white"
+              onClick={() => setPage("TestHome")}
+              className="bg-red-800/0 px-6 py-2 rounded-full transition-all duration-300 hover:text-white cursor-pointer"
             >
               Profil
             </button>
           </li>
           <li>
             <button
-              onClick={() => setPage("project")}
-              className="bg-red-800 px-6 py-2 rounded-full transition-all duration-300 hover:text-white"
+              onClick={() => setPage("TestHome")}
+              className="bg-red-800/0 px-6 py-2 rounded-full transition-all duration-300 hover:text-white cursor-pointer"
             >
               Projets
             </button>

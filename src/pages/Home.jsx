@@ -1,5 +1,5 @@
 // src/pages/Home.jsx
-function Home() {
+function HomePage() {
   return (
     <section className="min-h-screen w-full flex flex-col items-center justify-center px-4">
       {/* Conteneur de texte */}
@@ -7,9 +7,9 @@ function Home() {
         <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
           Bienvenue dans mon <span className="text-violet-500">Univers</span>
         </h1>
-        
+
         <p className="text-slate-400 text-xl max-w-2xl mx-auto mb-10">
-          Développeur 
+          Développeur
         </p>
 
         {/* Bouton d'action */}
@@ -17,8 +17,8 @@ function Home() {
           Me découvrir
         </button>
       </div>
-    </section>  
+    </section>
   );
 }
 
-export default Home;
+export default HomePage;
