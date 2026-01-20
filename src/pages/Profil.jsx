@@ -1,9 +1,10 @@
 import SkillCard from "../components/skillsCard.jsx";
 
 function ProfilFunction() {
-  const skills = ["React", "Tailwind"];
+  //la variable qui contient les skills
+  const skills = ["React", "Tailwind", "JavaScript", "HTML", "CSS", "Node.js"];
   return (
-    <section className="min-h-screen w-full overflow-hidden flex items-center justify-center text-white">
+    <section className="min-h-[80vh] w-full overflow-hidden flex items-center justify-center text-white">
       <div className="grid grid-cols-[350px_650px] gap-8 max-w-5xl mx-auto">
         <div className="flex flex-col gap-6">
           <div
