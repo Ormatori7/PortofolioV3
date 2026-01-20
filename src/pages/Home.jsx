@@ -9,8 +9,7 @@ function Home() {
         </h1>
         
         <p className="text-slate-400 text-xl max-w-2xl mx-auto mb-10">
-          Développeur passionné par React, je crée des interfaces fluides et modernes. 
-          Explore mon travail et mes compétences ci-dessous.
+          Développeur 
         </p>
 
         {/* Bouton d'action */}
