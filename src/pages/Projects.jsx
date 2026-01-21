@@ -10,6 +10,7 @@ function TelecommandeProjects(texte, action) {
       </button>
       <button className="...">Dév Web</button>
       <button className="...">Modélisation 3D</button>
+      <button className="...">Tous</button>
     </> // Le parent unique s'arrête ici
   );
 }
@@ -20,21 +21,30 @@ function ProjectsFunction() {
       titre: "project test",
       description: "test description",
       image: "../images/0001.png",
+      categorie: "dev",
     },
     {
       titre: "project 2",
-      description: "test description",
+      description: "lfioshfsudghsuifgishi usdfuih uihsfdhifhsidhihf iusdiuhfish dihfsiduihs iusdhuif huish ezrh uzrehrzhei hzhuirh zeuihrui zehui hrzeuihz reiuhih zriuhiurzh iu hzrihiz rerg iurzeh iuzerhzri uah",
       image: "../images/0001.png",
+       categorie: "dev",
     },
     {
       titre: "project 3",
       description: "test description",
       image: "../images/0001.png",
+       categorie: "3D",
+    },
+    {
+      titre: "project 3",
+      description: "test description",
+      image: "../images/0001.png",
+      categorie: "3D",
     },
   ];
   return (
     <section className="overflow-hidden flex flex-col text-white">
-      <div className="w-[150vh] mx-auto">
+      <div className="max-w-7xl mx-auto w-full px-4">
         <div className="min-h-[30vh]  flex justify-between items-end bg-blue-500 w-full">
           <div className="flex flex-col gap-2">
             <h2 className="text-5xl font-bold text-white">My projects</h2>
@@ -54,13 +64,14 @@ function ProjectsFunction() {
           </div>
         </div>
 
-        <div className="bg-green-500 min-h-screen grid grid-cols-3 justify-center ">
-          {projectsCard.map(({ titre, description, image }, index) => (
+        <div className=" min-h-screen grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center py-10 ">
+          {projectsCard.map(({ titre, description, image, categorie }, index) => (
             <ProjectsCardFunction
               key={index}
               titre={titre}
               description={description}
               image={image}
+              categorie={categorie}
             />
           ))}
         </div>
