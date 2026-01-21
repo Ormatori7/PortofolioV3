@@ -19,32 +19,42 @@ function ProjectsFunction() {
     {
       titre: "project test",
       description: "test description",
-      image: "/Images/0001.png",
+      image: "../images/0001.png",
+    },
+    {
+      titre: "project 2",
+      description: "test description",
+      image: "../images/0001.png",
+    },
+    {
+      titre: "project 3",
+      description: "test description",
+      image: "../images/0001.png",
     },
   ];
   return (
     <section className="overflow-hidden flex flex-col text-white">
-      <div className="min-h-[30vh] mx-auto flex justify-between items-end px-8 bg-blue-500 w-full">
-        <div className="flex flex-col gap-2">
-          <h2 className="text-5xl font-bold text-white">My projects</h2>
-          <p className="text-white/50">Some of my projects I worked on</p>
+      <div className="w-[150vh] mx-auto">
+        <div className="min-h-[30vh]  flex justify-between items-end bg-blue-500 w-full">
+          <div className="flex flex-col gap-2">
+            <h2 className="text-5xl font-bold text-white">My projects</h2>
+            <p className="text-white/50">Some of my projects I worked on</p>
+          </div>
+
+          <div className="flex bg-white/5 backdrop-blur-md border border-white/10 p-1 rounded-2xl">
+            <button className="px-6 py-2 bg-white/10 rounded-xl text-white">
+              Tous
+            </button>
+            <button className="px-6 py-2 text-white/50 hover:text-white">
+              Dév Web
+            </button>
+            <button className="px-6 py-2 text-white/50 hover:text-white">
+              Modélisation 3D
+            </button>
+          </div>
         </div>
 
-        <div className="flex bg-white/5 backdrop-blur-md border border-white/10 p-1 rounded-2xl">
-          <button className="px-6 py-2 bg-white/10 rounded-xl text-white">
-            Tous
-          </button>
-          <button className="px-6 py-2 text-white/50 hover:text-white">
-            Dév Web
-          </button>
-          <button className="px-6 py-2 text-white/50 hover:text-white">
-            Modélisation 3D
-          </button>
-        </div>
-      </div>
-
-      <div className="bg-green-500 min-h-screen">
-        <div className="">
+        <div className="bg-green-500 min-h-screen grid grid-cols-3 justify-center ">
           {projectsCard.map(({ titre, description, image }, index) => (
             <ProjectsCardFunction
               key={index}
