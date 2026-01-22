@@ -1,6 +1,6 @@
 function Navbar({ page, setPage }) {
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-black backdrop-blur-xl border-b border-white/20 transition-all">
+    <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl border-b border-white/20 transition-all">
       <nav className="flex items-center justify-between px-8 py-4">
         {/* LOGO */}
         <img
@@ -14,8 +14,10 @@ function Navbar({ page, setPage }) {
           <li>
             <button
               onClick={() => setPage("Acceuil")}
-              className={`px-6 py-2 rounded-full transition-all duration-300 hover:text-white cursor-pointer ${
-                page === "Acceuil" ? "bg-red-800 text-white" : ""
+              className={`px-6 py-2 rounded-full transition-all duration-300 cursor-pointer ${
+                page === "Acceuil"
+                  ? "bg-white/10 text-violet-400"
+                  : "hover:text-white "
               }`}
             >
               Accueil
@@ -24,8 +26,10 @@ function Navbar({ page, setPage }) {
           <li>
             <button
               onClick={() => setPage("ProfilFunction")}
-               className={`px-6 py-2 rounded-full transition-all duration-300 hover:text-white cursor-pointer ${
-                page === "ProfilFunction" ? "bg-red-800 text-white" : ""
+              className={`px-6 py-2 rounded-full transition-all duration-300  cursor-pointer ${
+                page === "ProfilFunction"
+                  ? "bg-white/10 text-violet-400"
+                  : "hover:text-white "
               }`}
             >
               Profil
@@ -34,8 +38,10 @@ function Navbar({ page, setPage }) {
           <li>
             <button
               onClick={() => setPage("ProjectsFunction")}
-               className={`px-6 py-2 rounded-full transition-all duration-300 hover:text-white cursor-pointer ${
-                page === "ProjectsFunction" ? "bg-red-800 text-white" : ""
+              className={`px-6 py-2 rounded-full transition-all duration-300  cursor-pointer ${
+                page === "ProjectsFunction"
+                  ? "bg-white/10 text-violet-400"
+                  : "hover:text-white "
               }`}
             >
               Projects
@@ -43,8 +49,7 @@ function Navbar({ page, setPage }) {
           </li>
         </ul>
 
-        {/* BOUTON CONTACT */}
-        <div className="bg-blue-800 backdrop-blur-md border border-white/20 px-6 py-2 rounded-full text-white text-sm transition-all duration-300 hover:scale-110 hover:bg-violet-500/40 cursor-pointer">
+        <div className="bg-violet-800 backdrop-blur-md border border-white/20 px-6 py-2 rounded-full text-white text-sm transition-all duration-300 hover:scale-110 hover:bg-violet-500/40 cursor-pointer">
           <button onClick={() => setPage("contact")}>Contactez-moi</button>
         </div>
       </nav>

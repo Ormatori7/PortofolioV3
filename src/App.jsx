@@ -9,7 +9,7 @@ function App() {
   // 2. On initialise l'état sur "home" par défaut
   const [page, setPage] = useState("Acceuil");
   return (
-    <div className="bg-black min-h-screen">
+    <div className="bg-black min-h-screen bg-[url('../images/b2.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
       {/* //3. On passe "setPage" à la NavBar pour que les boutons fonctionnent
       //expemple employer et patron */}
       <NavBar page={page} setPage={setPage} />
