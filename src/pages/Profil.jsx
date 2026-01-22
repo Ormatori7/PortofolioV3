@@ -17,7 +17,7 @@ function ProfilFunction() {
         initial={{ y: 50 }} // Commence 50 pixels plus bas et transparent
         animate={{ y: 0 }} // Monte à sa position finale (y: 0) et devient opaque
         exit={{ opacity: 0, y: 50 }}
-        transition={{ duration: 0.4, ease: "linear" }}
+        transition={{ duration: 0.5, ease: "ease-out" }}
         className="grid grid-cols-[350px_650px] gap-8 max-w-5xl mx-auto"
       >
         <div className="flex flex-col gap-6">
