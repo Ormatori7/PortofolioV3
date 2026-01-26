@@ -9,18 +9,18 @@ function App() {
   // 2. On initialise l'état sur "home" par défaut
   const [page, setPage] = useState("Acceuil");
   return (
-    <div className="bg-black min-h-screen bg-[url('../images/b2.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+    <div className="bg-black min-h-screen bg-[url('../images/BH_image.png')] bg-cover bg-center bg-no-repeat bg-fixed">
       {/* //3. On passe "setPage" à la NavBar pour que les boutons fonctionnent
       //expemple employer et patron */}
       <NavBar page={page} setPage={setPage} />
       <main className="pt-20">
         {/* //logique de telecommande et de télé */}
-        {/* 4. LOGIQUE : On affiche selon la valeur de "page" */}
+        
         {page === "Acceuil" && <Acceuil setPage={setPage} />}
 
         {page === "ProfilFunction" && <ProfilFunction />}
 
-        {page === "ProjectsFunction" && <ProjectsFunction />}
+        {page === "ProjectsFunction" && <ProjectsFunction setPage={setPage} />}
       </main>
     </div>
   );

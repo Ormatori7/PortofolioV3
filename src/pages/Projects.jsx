@@ -2,7 +2,7 @@ import { useState } from "react";
 import ProjectsCardFunction from "../components/projectsCard";
 import { AnimatePresence } from "framer-motion";
 
-function ProjectsFunction() {
+function ProjectsFunction({ setPage }) {
   const [cardID, setcardID] = useState("tous");
   const projectsCard = [
     {
@@ -94,6 +94,7 @@ function ProjectsFunction() {
                   description={description}
                   image={image}
                   categorie={categorie}
+                  onClick={() => setPage("PageProject1")}
                 />
               ),
             )}
