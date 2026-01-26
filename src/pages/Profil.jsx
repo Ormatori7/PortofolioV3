@@ -12,7 +12,7 @@ function ProfilFunction() {
     "Node.js",
   ];
   return (
-    <section className="min-h-[100vh] w-full overflow-hidden flex items-center justify-center text-white">
+    <section className="min-h-dvh w-full overflow-hidden flex items-center justify-center text-white">
       <motion.div
         initial={{ y: 50 }} // Commence 50 pixels plus bas et transparent
         animate={{ y: 0 }} // Monte à sa position finale (y: 0) et devient opaque

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-function ProjectsCardFunction({ image, categorie, titre, description }) {
+function ProjectsCardFunction({ image, categorie, titre, description, onClick }) {
   return (
     <motion.button
       layout // Permet aux cartes restantes de se déplacer fluidement vers leur nouvelle place

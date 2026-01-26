@@ -1,11 +1,8 @@
-import ProjectCardPage3D from "../../components/ProjectCardPage3D.jsx";
-$;
+import Page3DProject from "../../components/ProjectCardPage3D.jsx";
 
-export default function PageProject({ setPage }) {
-  return (
-    <div className="text-white p-20">
-      <button onClick={() => setPage("ProjectsFunction")}>← Retour</button>
-      <h1>Détails du projet</h1>
-    </div>
-  );
+function PageProject({ setPage }) {
+  return(
+     <Page3DProject setPage={setPage} />
+  )
 }
+export default PageProject;
