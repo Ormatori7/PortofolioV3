@@ -6,10 +6,11 @@ function ProjectsFunction({ setPage }) {
   const [cardID, setcardID] = useState("tous");
   const projectsCard = [
     {
-      titre: "Project test",
-      description: "test description",
-      image: "../images/0001.png",
-      categorie: "dev",
+      titre: "Fnaf remake",
+      description: "A remake of the masterpiece game Five Nights At Freddy's. ",
+      image: "../images/FnafImage/freddy.png",
+      categorie: "3D",
+      pageTarget: "PageFnaf",
     },
     {
       titre: "Project 2",
@@ -17,18 +18,21 @@ function ProjectsFunction({ setPage }) {
         "lfioshfsudghsuifgishi usdfuih uihsfdhifhsidhihf  fej  fsozh izurhi uhizyzljhfsdlj hsdljf hsddlfsh ",
       image: "../images/0001.png",
       categorie: "dev",
+      pageTarget: "PageProject1",
     },
     {
       titre: "Project 3",
       description: "test description",
       image: "../images/0001.png",
       categorie: "3D",
+      pageTarget: "PageProject1",
     },
     {
       titre: "Project 3",
       description: "test description",
       image: "../images/0001.png",
       categorie: "3D",
+      pageTarget: "PageProject1",
     },
   ];
 
@@ -43,10 +47,10 @@ function ProjectsFunction({ setPage }) {
       <div className="max-w-7xl mx-auto w-full px-4">
         <div className="min-h-[30vh]  flex justify-between items-end  w-full">
           <div className="flex flex-col gap-2">
-            <h2 className="text-5xl font-bold bg-linear-to-r from-white via-violet-500 to-violet-800 bg-clip-text text-transparent pb-2 ">
+            <h2 className="text-[75px] font-bold bg-linear-to-r from-white via-violet-500 to-violet-800 bg-clip-text text-transparent pb-2 ">
               My projects
             </h2>
-            <p className="text-white/50 ">Some of my projects I worked on</p>
+            <p className="text-white/500 text-[25px]">Some of my projects I worked on</p>
           </div>
 
           <div className="flex bg-white/5 backdrop-blur-md border border-white/10 p-1 rounded-2xl shadow-lg shadow-black/50 ">
@@ -58,7 +62,7 @@ function ProjectsFunction({ setPage }) {
                   : "hover:text-white  text-white/50  transition-all duration-300" // si on est sur une autre categorie
               }`}
             >
-              Tous
+              All
             </button>
 
             <button
@@ -69,7 +73,7 @@ function ProjectsFunction({ setPage }) {
                   : "hover:text-white text-white/50 transition-all duration-300" // si on est sur une autre categorie
               }`}
             >
-              Dév Web
+              Developement
             </button>
             <button
               onClick={() => setcardID("3D")}
@@ -79,7 +83,7 @@ function ProjectsFunction({ setPage }) {
                   : "hover:text-white  text-white/50  transition-all duration-300 " // si on est sur une autre categorie
               }`}
             >
-              Modélisation 3D
+              3D modelisation
             </button>
           </div>
         </div>
@@ -87,14 +91,14 @@ function ProjectsFunction({ setPage }) {
         <div className=" min-h-screen grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center py-10">
           <AnimatePresence mode="popLayout">
             {projetsFiltres.map(
-              ({ titre, description, image, categorie }, index) => (
+              ({ titre, description, image, categorie, pageTarget }, index) => (
                 <ProjectsCardFunction
                   key={index}
                   titre={titre}
                   description={description}
                   image={image}
                   categorie={categorie}
-                  onClick={() => setPage("PageProject1")}
+                  onClick={() => setPage(pageTarget)}
                 />
               ),
             )}

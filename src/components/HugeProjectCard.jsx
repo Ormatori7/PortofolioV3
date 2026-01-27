@@ -17,7 +17,7 @@ function HugeCardFunction({ image, categorie, titre, description }) {
       <div className="p-5">
         <p className="text-violet-400 font-bold">{categorie}</p>
         <h3 className="text-xl font-bold text-white mb-2">{titre}</h3>
-        <p className=" text-sm mb-4 line-clamp-2">{description}</p>
+        <p className=" text-sm mb-4">{description}</p>
       </div>
     </motion.div>
   );

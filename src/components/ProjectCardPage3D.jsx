@@ -9,7 +9,7 @@ function Navbar3DProject({ setPage }) {
       <button
         onClick={() => setPage("ProjectsFunction")}
         className={
-          "px-6 py-2 rounded-full transition-all duration-300  cursor-pointer text-white bg-white/10 m-4 font-bold"
+          "px-6 py-2 rounded-full transition-all duration-300  cursor-pointer text-white bg-white/10 m-4 font-bold hover:scale-110"
         }
       >
         Back to Projects
@@ -38,7 +38,7 @@ function Page3DProject({ setPage, datapage }) {
     <section className="bg-red-500/25 flex flex-col pt-5 min-h-dvh max-w-7xl mx-auto w-full px-4">
       <Navbar3DProject setPage={setPage} />
       <div className="pt-25">
-        <div className="bg-green-500 grid grid-cols-2 mx-auto h-auto p-10 gap-5">
+        <div className="bg-green-500 grid grid-cols-[1fr_1fr] mx-auto h-auto p-10 gap-5">
           <div className="flex flex-col gap-5 justify-center">
             <div>
               <h2 className="text-9xl">{titre}</h2>
@@ -61,13 +61,13 @@ function Page3DProject({ setPage, datapage }) {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-3 w-full h-auto">
-        <div className="bg-red-500 flex flex-col p-5 rounded-3xl">
-          <div className="underline">{projectDescription}</div>
-          <div className="pt-5">{texte1}</div>
-        </div>
+      <div className="grid grid-cols-3 w-full min-h-[20dvh] h-auto">
         <div className="bg-blue-500 p-5 rounded-3xl">
           <div className="underline">{details}</div>
+          <div className="pt-5">{texte1}</div>
+        </div>
+        <div className="bg-red-500 flex flex-col p-5 rounded-3xl">
+          <div className="underline">{projectDescription}</div>
           <div className="pt-5">{texte2}</div>
         </div>
         <div className="bg-violet-500 p-5 rounded-3xl">
@@ -78,10 +78,11 @@ function Page3DProject({ setPage, datapage }) {
       <div className="h-[15dvh] bg-yellow-500 justify-center items-center flex ">
         {titre2}
       </div>
-      <div className=" h-auto grid grid-cols-2 justify-items-center">
-        <AnimatePresence mode="popLayout">
+      <div className=" h-auto grid grid-cols-2 justify-items-center gap-15">
+        <AnimatePresence mode="popLayout ">
           {HugeCardData.map((card, index) => (
             <HugeCardFunction key={index} {...card} />
+            //en mettant ...card ca me permet de regrouper tt les element comme le texte image etc dans un seul sac que je peux ensuite faire passer et remplir dans ma page
           ))}
         </AnimatePresence>
       </div>
