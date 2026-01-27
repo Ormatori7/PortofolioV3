@@ -50,7 +50,9 @@ function Navbar({ page, setPage }) {
         </ul>
 
         <div className="bg-violet-500/40 backdrop-blur-md border border-white/20 px-6 py-2 rounded-full text-white text-sm transition-all duration-300 hover:scale-110 cursor-pointer">
-          <button className="cursor-pointer" onClick={() => setPage("contact")}>Contactez-moi</button>
+          <button className="cursor-pointer" onClick={() => setPage("contact")}>
+            Contactez-moi
+          </button>
         </div>
       </nav>
     </header>

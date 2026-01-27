@@ -1,4 +1,4 @@
-import SkillCard from "../components/skillsCard.jsx";
+import SkillCard, { ThemeViolet } from "../components/skillsCard.jsx";
 import { motion } from "framer-motion";
 
 function ProfilFunction() {
@@ -25,7 +25,11 @@ function ProfilFunction() {
             id="colonne-gauche"
             className="aspect-square rounded-4xl border border-white/20 bg-white/5 backdrop-blur-xl items-center justify-center flex object-contain p-4"
           >
-            <img src="../Images/0001.png" alt="imageProfil" className="w-full h-full object-cover rounded-3xl" />
+            <img
+              src="../Images/0001.png"
+              alt="imageProfil"
+              className="w-full h-full object-cover rounded-3xl"
+            />
           </div>
           <div className="h-auto rounded-4xl border border-white/20 bg-white/5 backdrop-blur-xl p-5">
             <h3 className="font-bold">Skills</h3>
@@ -34,7 +38,7 @@ function ProfilFunction() {
 
             <div className="flex flex-wrap gap-3">
               {skills.map((skills, index) => (
-                <SkillCard key={index} texte={skills} />
+                <SkillCard key={index} texte={skills} bgColor={ThemeViolet} />
               ))}
             </div>
           </div>
