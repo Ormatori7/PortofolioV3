@@ -62,7 +62,7 @@ function Page3DProject({ setPage, datapage }) {
         </div>
       </div>
       <div className="grid grid-cols-3 w-full min-h-[20dvh] h-auto gap-5">
-        <div className="backdrop-blur-xl p-5 rounded-3xl backdrop-blur- border border-white/20 ">
+        <div className="bg-white/3 backdrop-blur-2xl border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] rounded-3xl p-5 ">
           <div className="underline">{details}</div>
           <div className="pt-5">{texte1}</div>
         </div>

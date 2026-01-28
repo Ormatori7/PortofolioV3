@@ -8,7 +8,7 @@ function ProjectsCardFunction({ image, categorie, titre, description, onClick })
       animate={{ opacity: 1, y: 0 }} // Monte à sa position finale (y: 0) et devient opaque
       exit={{ opacity: 0, y: 50 }}
       transition={{ duration: 0.4, ease: "ease-out " }}
-      className="bg-zinc-900 border border-white/10 rounded-3xl  flex flex-col text-start w-[350px] h-[350px] mt-10 overflow-hidden text-white cursor-pointer"
+      className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 shadow-[inset_0_1px_2px_rgba(255,255,255,0.1)] hover:bg-white/[0.07] hover:border-blue-500/30  rounded-3xl flex flex-col text-start w-[350px] h-[350px] mt-10 overflow-hidden text-white cursor-pointer"
 
       onClick={onClick} // Déclenche l'action au clic
       whileHover={{ y: -10, scale: 1.02 }} // La carte monte et grossit un peu au survol

@@ -135,3 +135,9 @@ threshold: 0.6   | Sensibilité du changement de section en JS.
 IntersectionObserver | Méthode pro pour détecter la section active.
 
 
+
+
+
+ICONS IMPORT
+npm install react-icons
+npm install react-icons@latest

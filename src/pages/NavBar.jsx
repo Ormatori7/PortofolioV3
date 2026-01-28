@@ -1,15 +1,7 @@
 function Navbar({ page, setPage }) {
   return (
     <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl border-b border-white/20 transition-all">
-      <nav className="flex items-center justify-between px-8 py-4">
-        {/* LOGO */}
-        <img
-          src="/Images/0001.png"
-          className="h-10 w-auto hover:scale-105 transition-transform cursor-pointer"
-          alt="Logo"
-          onClick={() => setPage("Acceuil")}
-        />
-
+      <nav className="flex justify-center px-8 py-4">
         <ul className="flex justify-center space-x-8 text-white/50 font-medium">
           <li>
             <button
@@ -20,7 +12,7 @@ function Navbar({ page, setPage }) {
                   : "hover:text-white "
               }`}
             >
-              Accueil
+              Home
             </button>
           </li>
           <li>
@@ -48,12 +40,6 @@ function Navbar({ page, setPage }) {
             </button>
           </li>
         </ul>
-
-        <div className="bg-violet-500/40 backdrop-blur-md border border-white/20 px-6 py-2 rounded-full text-white text-sm transition-all duration-300 hover:scale-110 cursor-pointer">
-          <button className="cursor-pointer" onClick={() => setPage("contact")}>
-            Contactez-moi
-          </button>
-        </div>
       </nav>
     </header>
   );

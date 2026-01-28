@@ -53,7 +53,7 @@ function ProjectsFunction({ setPage }) {
             <p className="text-white/500 text-[25px]">Some of my projects I worked on</p>
           </div>
 
-          <div className="flex bg-white/5 backdrop-blur-md border border-white/10 p-1 rounded-2xl shadow-lg shadow-black/50 ">
+          <div className="flex bg-white/[0.03] backdrop-blur-2xl border border-white/10 p-1 rounded-2xl shadow-lg shadow-black/50">
             <button
               onClick={() => setcardID("tous")}
               className={`px-6 py-2   cursor-pointer ${
