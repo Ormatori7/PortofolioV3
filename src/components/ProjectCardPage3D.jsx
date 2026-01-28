@@ -5,7 +5,7 @@ import { AnimatePresence } from "framer-motion";
 // telecommande pour retourner sur la page de projects
 function Navbar3DProject({ setPage }) {
   return (
-    <header className="fixed mt-10 left-1/2 -translate-x-1/2 w-4/5 z-50 backdrop-blur-xl border border-white/10 rounded-4xl transition-all bg-blue-500">
+    <header className="fixed mt-10 left-1/2 -translate-x-1/2 w-4/5 z-50 backdrop-blur-xl border border-white/10 rounded-4xl transition-all ">
       <button
         onClick={() => setPage("ProjectsFunction")}
         className={
@@ -35,13 +35,13 @@ function Page3DProject({ setPage, datapage }) {
   } = datapage;
 
   return (
-    <section className="bg-red-500/25 flex flex-col pt-5 min-h-dvh max-w-7xl mx-auto w-full px-4">
+    <section className="5 flex flex-col pt-5 min-h-dvh max-w-7xl mx-auto w-full px-4 text-white">
       <Navbar3DProject setPage={setPage} />
       <div className="pt-25">
-        <div className="bg-green-500 grid grid-cols-[1fr_1fr] mx-auto h-auto p-10 gap-5">
+        <div className=" grid grid-cols-[1fr_1fr] mx-auto h-auto p-10 gap-5">
           <div className="flex flex-col gap-5 justify-center">
             <div>
-              <h2 className="text-9xl">{titre}</h2>
+              <h2 className="text-9xl ">{titre}</h2>
             </div>
             <div>
               <div className="flex flex-wrap gap-3">
@@ -61,22 +61,23 @@ function Page3DProject({ setPage, datapage }) {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-3 w-full min-h-[20dvh] h-auto">
-        <div className="bg-blue-500 p-5 rounded-3xl">
+      <div className="grid grid-cols-3 w-full min-h-[20dvh] h-auto gap-5">
+        <div className="backdrop-blur-xl p-5 rounded-3xl backdrop-blur- border border-white/20 ">
           <div className="underline">{details}</div>
           <div className="pt-5">{texte1}</div>
         </div>
-        <div className="bg-red-500 flex flex-col p-5 rounded-3xl">
+        <div className="backdrop-blur-xl flex flex-col p-5 rounded-3xl border border-white/20">
           <div className="underline">{projectDescription}</div>
           <div className="pt-5">{texte2}</div>
         </div>
-        <div className="bg-violet-500 p-5 rounded-3xl">
+        <div className="backdrop-blur-xl p-5 rounded-3xl border border-white/20">
           <div className="underline">{but}</div>
           <div className="pt-5">{texte3}</div>
         </div>
       </div>
-      <div className="h-[15dvh] bg-yellow-500 justify-center items-center flex ">
-        {titre2}
+      <div className="h-[15dvh]  justify-center items-center flex ">
+        <h2 className="text-[4dvh]">{titre2}</h2>
+       
       </div>
       <div className=" h-auto grid grid-cols-2 justify-items-center gap-15">
         <AnimatePresence mode="popLayout ">
