@@ -1,22 +1,20 @@
 import SkillCard, { ThemeGlass } from "./skillsCard";
 import HugeCardFunction from "./HugeProjectCard";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
-// telecommande pour retourner sur la page de projects
-function Navbar3DProject({ setPage }) {
-  return (
-    <header className="fixed mt-10 left-1/2 -translate-x-1/2 w-4/5 z-50 backdrop-blur-xl border border-white/10 rounded-4xl transition-all ">
-      <button
-        onClick={() => setPage("ProjectsFunction")}
-        className={
-          "px-6 py-2 rounded-full transition-all duration-300  cursor-pointer text-white bg-white/10 m-4 font-bold hover:scale-110"
-        }
-      >
-        Back to Projects
-      </button>
-    </header>
-  );
-}
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } },
+};
 
 function Page3DProject({ setPage, datapage }) {
   const {
@@ -35,76 +33,91 @@ function Page3DProject({ setPage, datapage }) {
   } = datapage;
 
   return (
-    <section className="5 flex flex-col pt-5 min-h-dvh max-w-7xl mx-auto w-full px-4 text-white">
-      <Navbar3DProject setPage={setPage} />
-      <div className="pt-25">
-        <div className=" grid grid-cols-[1fr_1fr] mx-auto h-auto p-10 gap-5">
-          <div className="flex flex-col gap-5 justify-center">
-            <div>
-              <h2 className="text-9xl ">{titre}</h2>
-            </div>
-            <div>
-              <div className="flex flex-wrap gap-3">
-                {AppUsed.map((skills, index) => (
-                  <SkillCard key={index} texte={skills} bgColor={ThemeGlass} />
-                ))}
-              </div>
-            </div>
-            <div>{sousTitre}</div>
+    <motion.section
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="relative flex flex-col pt-40 pb-20 min-h-screen max-w-6xl mx-auto w-full px-6 text-white"
+    >
+      <div
+        className="fixed inset-0 z-[-1] opacity-20"
+        style={{
+          backgroundImage: `linear-gradient(#ffffff10 1px, transparent 1px), linear-gradient(90deg, #ffffff10 1px, transparent 1px)`,
+          backgroundSize: "40px 40px",
+        }}
+      />
+      <div className="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[120px] z-[-1]" />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24 items-center">
+        <motion.div variants={itemVariants} className="flex flex-col gap-6">
+          <h1 className="text-6xl md:text-7xl font-bold tracking-tight text-white">
+            {titre}
+          </h1>
+          <div className="flex flex-wrap gap-2">
+            {AppUsed.map((skill, index) => (
+              <SkillCard key={index} texte={skill} bgColor={ThemeGlass} />
+            ))}
           </div>
-          <div className="aspect-square rounded-4xl border border-white/20 bg-white/5 backdrop-blur-xl items-center justify-center flex object-contain p-4">
-            <img
-              src={imagePrincipal} //ajouter cette image dans la partie modularité
-              alt="imageProfil"
-              className="w-full h-full object-cover rounded-3xl"
-            />
+          <p className="text-lg text-white/60 leading-relaxed font-light border-l-2 border-violet-500/30 pl-6 italic">
+            {sousTitre}
+          </p>
+        </motion.div>
+
+        <motion.div
+          variants={itemVariants}
+          whileHover={{ scale: 1.01 }}
+          className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-3 shadow-2xl"
+        >
+          <img
+            src={imagePrincipal}
+            alt={titre}
+            className="w-full aspect-video lg:aspect-square object-cover rounded-2xl grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
+          />
+        </motion.div>
+      </div>
+
+      <motion.div
+        variants={itemVariants}
+        className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-32"
+      >
+        {[
+          { label: details, content: texte1 },
+          { label: projectDescription, content: texte2 },
+          { label: but, content: texte3 },
+        ].map((box, i) => (
+          <div
+            key={i}
+            className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:bg-white/[0.05] transition-all group"
+          >
+            <span className="text-[10px] uppercase tracking-[0.3em] text-violet-400 font-bold block mb-4 group-hover:text-violet-300">
+              {box.label}
+            </span>
+            <p className="text-white/70 font-light leading-relaxed text-sm">
+              {box.content}
+            </p>
           </div>
-        </div>
-      </div>
-      <div className="grid grid-cols-3 w-full min-h-[20dvh] h-auto gap-5">
-        <div className="bg-white/3 backdrop-blur-2xl border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] rounded-3xl p-5 ">
-          <div className="underline">{details}</div>
-          <div className="pt-5">{texte1}</div>
-        </div>
-        <div className="backdrop-blur-xl flex flex-col p-5 rounded-3xl border border-white/20">
-          <div className="underline">{projectDescription}</div>
-          <div className="pt-5">{texte2}</div>
-        </div>
-        <div className="backdrop-blur-xl p-5 rounded-3xl border border-white/20">
-          <div className="underline">{but}</div>
-          <div className="pt-5">{texte3}</div>
-        </div>
-      </div>
-      <div className="h-[15dvh]  justify-center items-center flex ">
-        <h2 className="text-[4dvh]">{titre2}</h2>
-       
-      </div>
-      <div className=" h-auto grid grid-cols-2 justify-items-center gap-15">
-        <AnimatePresence mode="popLayout ">
+        ))}
+      </motion.div>
+
+      <motion.div
+        variants={itemVariants}
+        className="flex flex-col items-center mb-16"
+      >
+        <h2 className="text-3xl font-bold mb-4">{titre2}</h2>
+        <div className="w-16 h-1 bg-violet-600 rounded-full" />
+      </motion.div>
+
+      <div className="flex flex-col items-center gap-20 w-full">
+        <AnimatePresence mode="popLayout">
           {HugeCardData.map((card, index) => (
-            <HugeCardFunction key={index} {...card} />
-            //en mettant ...card ca me permet de regrouper tt les element comme le texte image etc dans un seul sac que je peux ensuite faire passer et remplir dans ma page
+            <motion.div key={index} variants={itemVariants} layout>
+              <HugeCardFunction {...card} position={index} />
+            </motion.div>
           ))}
         </AnimatePresence>
       </div>
-    </section>
+    </motion.section>
   );
 }
-export default Page3DProject;
 
-// const AppUsed = ["Blender", "Unreal"];
-//   const HugeCard = [
-//     {
-//       titre: "Project test",
-//       description: "test description",
-//       image: "../images/0001.png",
-//       categorie: "dev",
-//     },
-//     {
-//       titre: "Project 2",
-//       description:
-//         "lfioshfsudghsuifgishi usdfuih uihsfdhifhsidhihf  fej  fsozh izurhi uhizyzljhfsdlj hsdljf hsddlfsh ",
-//       image: "../images/0001.png",
-//       categorie: "dev",
-//     },
-//   ];
+export default Page3DProject;

@@ -1,3 +1,8 @@
+
+html {
+  scroll-behavior: smooth;
+}
+
 /* Animation de pulsation lente et fluide */
 @keyframes flicker {
   0%, 100% { 
@@ -11,4 +16,45 @@
 .animate-flicker {
   /* On passe à 6 secondes (plus lent) et on force le 'linear' */
   animation: flicker 3s linear infinite;
+}
+
+
+/* --- La Scrollbar Look "Neon Glass" --- */
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* On l'élargit un tout petit peu pour qu'elle existe visuellement */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02); /* Une piste très légèrement visible */
+  border-radius: 20px;
+  margin-block: 20px; /* On la décolle bien du haut et du bas */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  /* Un dégradé qui rappelle tes couleurs bleu/violet */
+  background: linear-gradient(
+    to bottom,
+    rgba(59, 130, 246, 0.3), 
+    rgba(139, 92, 246, 0.3)
+  );
+  border-radius: 20px;
+  border: 2px solid transparent; /* Crée un espace entre le curseur et le bord */
+  background-clip: content-box;
+  transition: all 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  /* Elle s'illumine au survol */
+  background: linear-gradient(
+    to bottom,
+    rgba(59, 130, 246, 0.8), 
+    rgba(139, 92, 246, 0.8)
+  );
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+}
+
+button:focus, button:active {
+  outline: none !important;
+  box-shadow: none !important;
 }

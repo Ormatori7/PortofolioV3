@@ -1,46 +1,44 @@
+import { motion, LayoutGroup } from "framer-motion";
+
 function Navbar({ page, setPage }) {
+  const NavTableau = [
+    { id: "Acceuil", label: "Home" },
+    { id: "ProfilFunction", label: "Profil" },
+    { id: "ProjectsFunction", label: "Projects" },
+  ];
+
   return (
-    <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl border-b border-white/20 transition-all">
-      <nav className="flex justify-center px-8 py-4">
-        <ul className="flex justify-center space-x-8 text-white/50 font-medium">
-          <li>
-            <button
-              onClick={() => setPage("Acceuil")}
-              className={`px-6 py-2 rounded-full transition-all duration-300 cursor-pointer ${
-                page === "Acceuil"
-                  ? "bg-white/10 text-violet-400"
-                  : "hover:text-white "
-              }`}
-            >
-              Home
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setPage("ProfilFunction")}
-              className={`px-6 py-2 rounded-full transition-all duration-300  cursor-pointer ${
-                page === "ProfilFunction"
-                  ? "bg-white/10 text-violet-400"
-                  : "hover:text-white "
-              }`}
-            >
-              Profil
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setPage("ProjectsFunction")}
-              className={`px-6 py-2 rounded-full transition-all duration-300  cursor-pointer ${
-                page === "ProjectsFunction"
-                  ? "bg-white/10 text-violet-400"
-                  : "hover:text-white "
-              }`}
-            >
-              Projects
-            </button>
-          </li>
-        </ul>
-      </nav>
+    <header className="fixed top-8 left-0 w-full z-[100] flex justify-center pointer-events-none">
+      <div className="flex bg-white/[0.03] backdrop-blur-2xl border border-white/10 p-1.5 rounded-full shadow-2xl pointer-events-auto">
+        <LayoutGroup id="nav-v3">
+          {NavTableau.map((tab) => {
+            const isActive = page === tab.id;
+
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setPage(tab.id)}
+                className={`relative px-6 py-2 text-sm font-semibold cursor-pointer rounded-full outline-none focus:outline-none focus:ring-0 select-none
+                  ${isActive ? "text-violet-400" : "text-white/50 hover:text-white"}`}
+                style={{ WebkitTapHighlightColor: "transparent" }}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="active-pill-v3"
+                    className="absolute inset-0 bg-white/10 rounded-full z-0"
+                    transition={{
+                      type: "tween",
+                      duration: 0.3,
+                      ease: "easeInOut",
+                    }}
+                  />
+                )}
+                <span className="relative z-10">{tab.label}</span>
+              </button>
+            );
+          })}
+        </LayoutGroup>
+      </div>
     </header>
   );
 }

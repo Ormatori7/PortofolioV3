@@ -21,7 +21,7 @@ const Background = () => {
           repeat: Infinity,         // En boucle
           ease: "easeInOut" 
         }}
-        className="absolute -top-[5%] -left-[5%] w-[45%] h-[45%] rounded-full bg-violet-600/30 blur-[100px]"
+        className="absolute -top-[5%] -left-[5%] w-[45%] h-[45%] rounded-full bg-violet-600/50 blur-[100px]"
       />
       
       {/* 🔵 Néon Bleu (Bas Droite - Animation décalée) */}
@@ -35,7 +35,7 @@ const Background = () => {
           repeat: Infinity, 
           ease: "easeInOut" 
         }}
-        className="absolute -bottom-[10%] -right-[5%] w-[50%] h-[50%] rounded-full bg-blue-500/25 blur-[120px]"
+        className="absolute -bottom-[10%] -right-[5%] w-[50%] h-[50%] rounded-full bg-blue-500/50 blur-[120px]"
       />
 
       {/* ✨ Point de lumière central (Fixe) */}

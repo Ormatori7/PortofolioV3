@@ -1,179 +1,219 @@
 import SkillCard, { ThemeViolet } from "../components/skillsCard.jsx";
 import "../App.css";
 import { motion } from "framer-motion";
-// 2. Le bloc "SI" (Simple Icons)
 import {
-  // Dev Skills
   SiReact,
   SiTailwindcss,
   SiJavascript,
   SiHtml5,
   SiCss3,
   SiNodedotjs,
-  SiPython,
-
-  // 3D & Design
+  SiLinkedin,
   SiBlender,
   SiUnrealengine,
-
-  // Réseaux Sociaux
-  SiLinkedin,
-  SiDiscord,
 } from "react-icons/si";
-// 1. Le bloc "HI" (Hero Icons)
 import { HiUser, HiCode, HiCube, HiAcademicCap } from "react-icons/hi";
+import { Github } from "lucide-react";
+
+// 1. Variantes pour l'effet de cascade (Stagger)
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15, // Délai entre chaque carte
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
+// 2. Animation commune au survol
+const hoverEffect = {
+  scale: 1.02,
+  borderColor: "rgba(255, 255, 255, 0.4)",
+  backgroundColor: "rgba(255, 255, 255, 0.08)",
+  transition: { duration: 0.3 },
+};
 
 function ProfilFunction() {
-  //la variable qui contient les skills
   const skills = [
-    // la partie dev
     { name: "React.js", icon: <SiReact />, category: "dev" },
     { name: "Tailwind", icon: <SiTailwindcss />, category: "dev" },
     { name: "JavaScript", icon: <SiJavascript />, category: "dev" },
     { name: "HTML", icon: <SiHtml5 />, category: "dev" },
     { name: "CSS", icon: <SiCss3 />, category: "dev" },
     { name: "Node.js", icon: <SiNodedotjs />, category: "dev" },
-    //la partie 3D
     { name: "Blender", icon: <SiBlender />, category: "3D" },
     { name: "Unreal Engine", icon: <SiUnrealengine />, category: "3D" },
   ];
+
   return (
-    <section className="min-h-dvh w-full overflow-hidden flex items-center justify-center text-white">
+    <section className="min-h-dvh w-full flex items-center justify-center text-white p-4 py-20">
       <motion.div
-        initial={{ y: 50 }} // Commence 50 pixels plus bas et transparent
-        animate={{ y: 0 }} // Monte à sa position finale (y: 0) et devient opaque
-        exit={{ opacity: 0, y: 50 }}
-        transition={{ duration: 0.5, ease: "ease-out" }}
-        className="grid grid-cols-[350px_650px] gap-8 max-w-5xl mx-auto"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        exit={{ opacity: 0 }}
+        className="grid grid-cols-[350px_550px] gap-20 max-w-5xl mx-auto items-start"
       >
-        <div className="flex flex-col gap-6">
-          <div
-            id="colonne-gauche"
-            className="aspect-square rounded-4xl border border-white/20 bg-white/5 backdrop-blur-xl items-center justify-center flex object-contain p-4"
-          >
-            <img
-              src="../images/0001.png"
-              alt="imageProfil"
-              className="w-full h-full object-cover rounded-3xl"
-            />
-          </div>
-
-          <div className="h-auto rounded-4xl border border-white/20 bg-white/5 backdrop-blur-xl p-5">
-            <div className="flex items-center gap-3 mb-4">
-              <HiCode size={20} className="text-blue-400" />{" "}
-              <h3 className="font-bold text-xl">Dev Skills</h3>
-            </div>
-
-            <div className="border-b border-white/75 mb-4 w-full"></div>
-
-            <div className="flex flex-wrap gap-3">
-              {/* on appelle le tableau skills au debut ensuite on lui met les parametres filter et ensuite map */}
-              {skills
-                .filter((item) => item.category === "dev")
-                .map((item, index) => (
-                  <SkillCard
-                    key={index}
-                    texte={item.name} // On extrait le texte du paquet
-                    icone={item.icon} // On extrait l'icône du paquet
-                    bgColor={ThemeViolet}
-                  />
-                ))}
-            </div>
-            <div className="flex items-center gap-3 mb-4 mt-[15px]">
-              <HiCube size={20} className="text-blue-500" />{" "}
-              <h3 className="font-bold text-xl">3D Skills</h3>
-            </div>
-
-            <div className="border-b border-white/75 mb-4 w-full"></div>
-
-            <div className="flex flex-wrap gap-3">
-              {/* on appelle le tableau skills au debut ensuite on lui met les parametres filter et ensuite map */}
-              {skills
-                .filter((item) => item.category === "3D")
-                .map((item, index) => (
-                  <SkillCard
-                    key={index}
-                    texte={item.name} // On extrait le texte du paquet
-                    icone={item.icon} // On extrait l'icône du paquet
-                    bgColor={ThemeViolet}
-                  />
-                ))}
-            </div>
-          </div>
-        </div>
-        <div
-          id=" colonne-droite"
-          className="h-full rounded-4xl border border-white/20 bg-white/5 backdrop-blur-xl p-10"
+        {/* --- COLONNE GAUCHE (STICKY & FIXE) --- */}
+        <motion.div
+          variants={itemVariants}
+          className="sticky top-10 flex flex-col"
         >
-          {/* --- SECTION ABOUT ME --- */}
-          <div className="mb-16">
-            <div className="flex items-center gap-3 mb-6">
-              <HiUser size={28} className="text-blue-500" />
-              <h2 className="text-3xl font-bold text-white tracking-tight">
+          <motion.div
+            whileHover={hoverEffect}
+            className="w-full h-auto rounded-3xl border border-white/20 bg-white/5 backdrop-blur-xl items-center justify-center flex flex-col p-8 gap-5 shadow-2xl"
+          >
+            <div className="relative overflow-hidden rounded-2xl w-full aspect-square">
+              <img
+                src="../images/0001.png"
+                alt="imageProfil"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="flex flex-col text-center justify-center items-center">
+              <h2 className="text-3xl font-bold">Moura Antoine</h2>
+              <p className="text-blue-500 font-medium">
+                Developer and 3D artist
+              </p>
+              <div className="mt-5 flex gap-5">
+                <a
+                  href="https://www.linkedin.com/in/antoine-moura-057a89387/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <SiLinkedin
+                    size={22}
+                    className="hover:text-blue-400 cursor-pointer transition-colors"
+                  />
+                </a>
+
+                <a
+                  href="https://github.com/Ormatori7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github
+                    size={22}
+                    className="hover:text-blue-400 cursor-pointer transition-colors"
+                  />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        <div className="flex flex-col gap-6 w-full">
+          <motion.div
+            variants={itemVariants}
+            whileHover={hoverEffect}
+            className="rounded-3xl border border-white/20 bg-white/5 backdrop-blur-xl p-8 shadow-2xl"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <HiUser size={24} className="text-blue-500" />
+              <h2 className="text-2xl font-bold text-white tracking-tight">
                 About Me
               </h2>
             </div>
+            <p className="text-white/70 leading-relaxed text-base font-light border-l-2 border-blue-500/20 pl-5">
+              Passionate{" "}
+              <span className="text-white font-medium">Developer</span> and{" "}
+              <span className="text-white font-medium">3D Artist</span>{" "}
+              dedicated to crafting immersive digital experiences...
+            </p>
+          </motion.div>
 
-            <div className="space-y-4">
-              <p className="text-white/70 leading-relaxed text-lg font-light border-l-2 border-blue-500/20 pl-6 py-1">
-                {/* Texte avec une mise en avant subtile de certains mots */}
-                Passionné par le{" "}
-                <span className="text-white font-medium">
-                  développement web
-                </span>{" "}
-                et le{" "}
-                <span className="text-white font-medium">game design</span>, je
-                m'efforce de créer des interfaces où le code rencontre l'art.
-                Mon approche mélange rigueur technique et créativité visuelle.
-              </p>
-            </div>
-          </div>
-
-          
-          <div>
-            <div className="flex items-center gap-3 mb-10">
-              <HiAcademicCap size={28} className="text-blue-500" />
-              <h3 className="text-2xl font-bold text-white tracking-tight">
+          <motion.div
+            variants={itemVariants}
+            whileHover={hoverEffect}
+            className="rounded-3xl border border-white/20 bg-white/5 backdrop-blur-xl p-8 shadow-2xl "
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <HiAcademicCap size={24} className="text-blue-500" />
+              <h3 className="text-xl font-bold text-white tracking-tight">
                 Academic Path
               </h3>
             </div>
-
-            {/* Timeline simplifiée : on retire la carte massive pour quelque chose de plus léger */}
-            <div className="ml-3 space-y-12">
-              <div className="relative pl-10 group">
-                {/* La ligne verticale : plus fine et avec un dégradé qui s'estompe en bas */}
-                <div className="absolute left-0 top-2 bottom-[-48px] w-[1px] bg-gradient-to-b from-blue-500 via-blue-500/20 to-transparent"></div>
-
-                {/* un pointt */}
+            <div className="ml-2 space-y-8">
+              <div className="relative pl-8 group">
+                <div className="absolute left-0 top-2 bottom-[-32px] w-[1px] bg-gradient-to-b from-blue-500 via-blue-500/20 to-transparent"></div>
                 <div className="absolute left-[-4px] top-2 w-2 h-2 bg-blue-500 rounded-full ring-4 ring-[#121212]"></div>
-
-                <div className="flex flex-col gap-1 transition-transform group-hover:translate-x-1 duration-300">
-                  <div className="flex items-center gap-3">
-                    <span className="text-blue-500 font-bold text-xs uppercase tracking-widest">
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-blue-500 font-bold text-[10px] uppercase tracking-widest">
                       2024 — Présent
                     </span>
-                    {/* Un petit badge de statut */}
-                    <span className="px-2 py-0.5 bg-blue-500/10 text-blue-500 text-[10px] rounded border border-blue-500/20 animate-flicker">
+                    <span className="px-2 py-0.5 bg-blue-500/10 text-blue-500 text-[9px] rounded border border-blue-500/20 animate-pulse">
                       EN COURS
                     </span>
                   </div>
-
-                  <h4 className="text-white text-xl font-semibold mt-1">
+                  <h4 className="text-white text-lg font-semibold">
                     Bachelor Informatique
                   </h4>
-
-                  <p className="text-white/40 text-sm font-medium">
+                  <p className="text-white/40 text-xs font-medium">
                     Sup-de-Vinci, Puteaux
-                  </p>
-
-                  <p className="text-white/60 text-sm mt-3 leading-relaxed max-w-lg">
-                    Apprentissage approfondi de l'architecture logicielle et du
-                    développement Fullstack.
                   </p>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            whileHover={hoverEffect}
+            className="w-full flex flex-col rounded-3xl border border-white/20 bg-white/5 backdrop-blur-xl p-6 shadow-2xl "
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <HiCode size={20} className="text-blue-400" />
+              <h3 className="font-bold text-lg">Dev Skills</h3>
+            </div>
+            <div className="border-b border-white/20 mb-5 w-full"></div>
+            <div className="flex flex-wrap gap-2">
+              {skills
+                .filter((i) => i.category === "dev")
+                .map((item, index) => (
+                  <SkillCard
+                    key={index}
+                    texte={item.name}
+                    icone={item.icon}
+                    bgColor={ThemeViolet}
+                  />
+                ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            whileHover={hoverEffect}
+            className="w-full flex flex-col rounded-3xl border border-white/20 bg-white/5 backdrop-blur-xl p-6 shadow-2xl "
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <HiCube size={20} className="text-blue-500" />
+              <h3 className="font-bold text-lg">3D Skills</h3>
+            </div>
+            <div className="border-b border-white/20 mb-5 w-full"></div>
+            <div className="flex flex-wrap gap-2">
+              {skills
+                .filter((i) => i.category === "3D")
+                .map((item, index) => (
+                  <SkillCard
+                    key={index}
+                    texte={item.name}
+                    icone={item.icon}
+                    bgColor={ThemeViolet}
+                  />
+                ))}
+            </div>
+          </motion.div>
         </div>
       </motion.div>
     </section>
