@@ -11,9 +11,11 @@ import {
   SiLinkedin,
   SiBlender,
   SiUnrealengine,
+  SiPython,
 } from "react-icons/si";
 import { HiUser, HiCode, HiCube, HiAcademicCap } from "react-icons/hi";
 import { Github } from "lucide-react";
+import { TbBrandCSharp } from "react-icons/tb";
 
 // 1. Variantes pour l'effet de cascade (Stagger)
 const containerVariants = {
@@ -51,6 +53,11 @@ function ProfilFunction() {
     { name: "HTML", icon: <SiHtml5 />, category: "dev" },
     { name: "CSS", icon: <SiCss3 />, category: "dev" },
     { name: "Node.js", icon: <SiNodedotjs />, category: "dev" },
+    { name: "Python", icon: <SiPython />, category: "dev" },
+    { name: "C#", icon: <TbBrandCSharp />
+, category: "dev" },
+
+    //3D
     { name: "Blender", icon: <SiBlender />, category: "3D" },
     { name: "Unreal Engine", icon: <SiUnrealengine />, category: "3D" },
   ];
@@ -64,7 +71,6 @@ function ProfilFunction() {
         exit={{ opacity: 0 }}
         className="grid grid-cols-[350px_550px] gap-20 max-w-5xl mx-auto items-start"
       >
-        {/* --- COLONNE GAUCHE (STICKY & FIXE) --- */}
         <motion.div
           variants={itemVariants}
           className="sticky top-10 flex flex-col"
@@ -112,11 +118,11 @@ function ProfilFunction() {
           </motion.div>
         </motion.div>
 
-        <div className="flex flex-col gap-6 w-full">
+        <div className="flex flex-col gap-6 w-full ">
           <motion.div
             variants={itemVariants}
             whileHover={hoverEffect}
-            className="rounded-3xl border border-white/20 bg-white/5 backdrop-blur-xl p-8 shadow-2xl"
+            className="rounded-3xl border border-white/20 bg-white/5 backdrop-blur-xl p-8 shadow-2xl "
           >
             <div className="flex items-center gap-3 mb-4">
               <HiUser size={24} className="text-blue-500" />
@@ -124,11 +130,13 @@ function ProfilFunction() {
                 About Me
               </h2>
             </div>
-            <p className="text-white/70 leading-relaxed text-base font-light border-l-2 border-blue-500/20 pl-5">
+            <p className="text-white/70 text-base font-light border-l-2 border-blue-500/20 pl-5 ">
               Passionate{" "}
               <span className="text-white font-medium">Developer</span> and{" "}
               <span className="text-white font-medium">3D Artist</span>{" "}
-              dedicated to crafting immersive digital experiences...
+              dedicated to crafting immersive digital experiences. I bridge the
+              gap between code and art by blending software development with 3D
+              to bring innovative concepts to life.
             </p>
           </motion.div>
 
@@ -150,10 +158,10 @@ function ProfilFunction() {
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-2">
                     <span className="text-blue-500 font-bold text-[10px] uppercase tracking-widest">
-                      2024 — Présent
+                      2024 — NOW
                     </span>
                     <span className="px-2 py-0.5 bg-blue-500/10 text-blue-500 text-[9px] rounded border border-blue-500/20 animate-pulse">
-                      EN COURS
+                      IN PROGRESS
                     </span>
                   </div>
                   <h4 className="text-white text-lg font-semibold">

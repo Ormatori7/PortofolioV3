@@ -31,10 +31,10 @@ function Footer({ setPage }) {
 
           
           <div className="flex gap-6">
-            <a href="https://linkedin.com" target="_blank" className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-violet-500/25 transition-all">
+            <a href="https://www.linkedin.com/in/antoine-moura-057a89387/" target="_blank" className="p-3 rounded-full bg-violet-500/25 border border-white/10 hover:bg-violet-500/50  transition-all">
               <FaLinkedin size={20} />
             </a>
-            <a href="https://github.com" target="_blank" className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-violet-500/25 transition-all">
+            <a href="https://github.com/Ormatori7" target="_blank" className="p-3 rounded-full bg-violet-500/25 border border-white/10 hover:bg-violet-500/100 transition-all">
               <FaGithub size={20} />
             </a>
           </div>

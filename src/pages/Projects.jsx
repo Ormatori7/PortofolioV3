@@ -33,28 +33,7 @@ function ProjectsFunction({ setPage }) {
       image: "../images/FnafImage/freddy.png",
       categorie: "3D",
       pageTarget: "PageFnaf",
-    },
-    {
-      titre: "Project 2",
-      description: "lfioshfsudghsuifgishi usdfuih uihsfdhifhsidhihf fej fsozh izurhi...",
-      image: "../images/0001.png",
-      categorie: "dev",
-      pageTarget: "PageProject1",
-    },
-    {
-      titre: "Project 3",
-      description: "test description",
-      image: "../images/0001.png",
-      categorie: "3D",
-      pageTarget: "PageProject1",
-    },
-    {
-      titre: "Project 4",
-      description: "test description",
-      image: "../images/0001.png",
-      categorie: "3D",
-      pageTarget: "PageProject1",
-    },
+    }
   ];
 
   const projetsFiltres =
