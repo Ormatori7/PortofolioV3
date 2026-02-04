@@ -7,7 +7,7 @@ const DataForPage = {
   AppUsed: ["Unreal Engine"],
   sousTitre:
     "The handmade remake of an famous game in order to learn the 3D software Unreal Engine ",
-  imagePrincipal: "../images/FnafImage/BonnyCloseCam.png",
+  imagePrincipal: "./images/FnafImage/BonnyCloseCam.png",
 
   details: "Project details",
   texte1:
@@ -27,7 +27,7 @@ const DataForPage = {
       titre: "Modular AI System",
       description:
         "Actor-based AI logic to provide for animatronic some movement and dynamic pathfinding based on actor points.",
-      image: "../images/FnafImage/MainStagefnaf.png",
+      image: "./images/FnafImage/MainStagefnaf.png",
       categorie: "feature",
       position: "0",
     },
@@ -35,7 +35,7 @@ const DataForPage = {
       titre: "Ai Path",
       description:
         "As the hours pass, the animatronics grow increasingly aggressive, stalking through the shadows of the facility. They will attempt to breach your office by any means necessary, keep a watchful eye on every sector, or face the consequences of a security failure...",
-      image: "../images/FnafImage/BonnyCloseCam.png",
+      image: "./images/FnafImage/BonnyCloseCam.png",
       categorie: "feature",
       position: "1",
     },
@@ -43,7 +43,7 @@ const DataForPage = {
       titre: "Survival Mechanics",
       description:
         "Resource-based gameplay where every action (lights, doors, CCTV) drains a limited power supply, leaving the player vulnerable.",
-      image: "../images/FnafImage/DoorFnaf.png",
+      image: "./images/FnafImage/DoorFnaf.png",
       categorie: "dev",
       position: "0",
     },
@@ -51,7 +51,7 @@ const DataForPage = {
       titre: "Ik Head System",
       description:
         "Animatronics utilize an IK (Inverse Kinematics) system to procedurally track the player's camera after a predefined delay, increasing the sense of unease",
-      image: "../images/FnafImage/Awake.png",
+      image: "./images/FnafImage/Awake.png",
       categorie: "dev",
       position: "1",
     },
@@ -59,25 +59,25 @@ const DataForPage = {
 };
 
 const MenuImage = [
-  { image: "../images/FnafImage/chica.png", titre: "Chica" },
-  { image: "../images/FnafImage/foxy.png", titre: "Foxy" },
-  { image: "../images/FnafImage/MainMenuFnaf.png", titre: "Bonnie" },
-  { image: "../images/FnafImage/freddy.png", titre: "Freddy" },
+  { image: "./images/FnafImage/chica.png", titre: "Chica" },
+  { image: "./images/FnafImage/foxy.png", titre: "Foxy" },
+  { image: "./images/FnafImage/MainMenuFnaf.png", titre: "Bonnie" },
+  { image: "./images/FnafImage/freddy.png", titre: "Freddy" },
 ];
 
 const projectScreenshots = [
-  "../images/FnafImage/stage.png",
-  "../images/FnafImage/partyRoom.png",
-  "../images/FnafImage/piratecurtain.png",
-  "../images/FnafImage/maintenance.png",
-  "../images/FnafImage/restrooms.png",
-  "../images/FnafImage/kitchen.png",
-  "../images/FnafImage/lefthallway.png",
-  "../images/FnafImage/RightHallway.png",
-  "../images/FnafImage/storage.png",
-  "../images/FnafImage/RightCorner.png",
-  "../images/FnafImage/leftCorner.png",
-  "../images/FnafImage/office.png",
+  "./images/FnafImage/stage.png",
+  "./images/FnafImage/partyRoom.png",
+  "./images/FnafImage/piratecurtain.png",
+  "./images/FnafImage/maintenance.png",
+  "./images/FnafImage/restrooms.png",
+  "./images/FnafImage/kitchen.png",
+  "./images/FnafImage/lefthallway.png",
+  "./images/FnafImage/RightHallway.png",
+  "./images/FnafImage/storage.png",
+  "./images/FnafImage/RightCorner.png",
+  "./images/FnafImage/leftCorner.png",
+  "./images/FnafImage/office.png",
 ];
 
 function FnafPage({ setPage }) {

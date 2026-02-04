@@ -54,8 +54,7 @@ function ProfilFunction() {
     { name: "CSS", icon: <SiCss3 />, category: "dev" },
     { name: "Node.js", icon: <SiNodedotjs />, category: "dev" },
     { name: "Python", icon: <SiPython />, category: "dev" },
-    { name: "C#", icon: <TbBrandCSharp />
-, category: "dev" },
+    { name: "C#", icon: <TbBrandCSharp />, category: "dev" },
 
     //3D
     { name: "Blender", icon: <SiBlender />, category: "3D" },
@@ -81,7 +80,7 @@ function ProfilFunction() {
           >
             <div className="relative overflow-hidden rounded-2xl w-full aspect-square">
               <img
-                src="../images/0001.png"
+                src="./images/0001.png"
                 alt="imageProfil"
                 className="w-full h-full object-cover"
               />

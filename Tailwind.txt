@@ -153,3 +153,7 @@ npm install embla-carousel-auto-scroll
 
 //petit paquet très pratique pour envoyer ton dossier de build automatiquement vers GitHub.
 npm install gh-pages --save-dev
+
+
+//pour deployer de nouveau le site sur les erveurs de github
+npm run deploy

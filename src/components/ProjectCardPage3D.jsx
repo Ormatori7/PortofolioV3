@@ -66,12 +66,12 @@ function Page3DProject({ setPage, datapage }) {
         <motion.div
           variants={itemVariants}
           whileHover={{ scale: 1.01 }}
-          className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-3 shadow-2xl"
+          className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-3 shadow-2xl shadow-violet-700/25 ring-1 ring-white/20"
         >
           <img
             src={imagePrincipal}
             alt={titre}
-            className="w-full aspect-video lg:aspect-square object-cover rounded-2xl grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
+            className="w-full aspect-video lg:aspect-square object-cover rounded-2xl grayscale-[0.2] hover:grayscale-0 transition-all duration-700 "
           />
         </motion.div>
       </div>

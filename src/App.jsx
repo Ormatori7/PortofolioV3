@@ -9,6 +9,7 @@ import PageProject from "./pages/Projects/PageProject1.jsx";
 import FnafPage from "./pages/Projects/PageFnaf.jsx";
 import Background from "./components/Background.jsx";
 import Footer from "./components/Footer.jsx";
+import PageEntity from "./pages/Projects/PageEntity.jsx";
 
 function App() {
   // On initialise l'état sur "home" par défaut
@@ -47,6 +48,8 @@ function App() {
         {page === "PageProject1" && <PageProject setPage={setPage} />}
 
         {page === "PageFnaf" && <FnafPage setPage={setPage} />}
+
+        {page === "PageEntity" && <PageEntity setPage={setPage} />}
       </main>
       <Footer setPage={setPage} />
     </div>

@@ -30,9 +30,16 @@ function ProjectsFunction({ setPage }) {
     {
       titre: "Fnaf remake",
       description: "A remake of the masterpiece game Five Nights At Freddy's.",
-      image: "../images/FnafImage/freddy.png",
+      image: "./images/FnafImage/freddy.png",
       categorie: "3D",
       pageTarget: "PageFnaf",
+    },
+    {
+      titre: "The soul of the entity",
+      description: "An Game based on Halloween theme all created by myself in one week",
+      image: "./images/EntityImage/Mainmenu.png",
+      categorie: "3D",
+      pageTarget: "PageEntity",
     }
   ];
 
