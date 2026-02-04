@@ -76,14 +76,14 @@ const projectScreenshots = [
   "./images/FnafImage/RightHallway.png",
   "./images/FnafImage/storage.png",
   "./images/FnafImage/RightCorner.png",
-  "./images/FnafImage/leftCorner.png",
+  "./images/FnafImage/LeftCorner.png",
   "./images/FnafImage/office.png",
 ];
 
-function FnafPage({ setPage }) {
+function FnafPage({}) {
   return (
     <>
-      <Page3DProject setPage={setPage} datapage={DataForPage} />
+      <Page3DProject datapage={DataForPage} />
 
       <div className="pb-20 pt-15">
         <h2 className="text-center text-white text-3xl font-black uppercase tracking-tighter mb-10">

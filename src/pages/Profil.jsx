@@ -17,7 +17,7 @@ import { HiUser, HiCode, HiCube, HiAcademicCap } from "react-icons/hi";
 import { Github } from "lucide-react";
 import { TbBrandCSharp } from "react-icons/tb";
 
-// 1. Variantes pour l'effet de cascade (Stagger)
+// Variantes pour l'effet de cascade ( appellé Stagger)
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -37,7 +37,7 @@ const itemVariants = {
   },
 };
 
-// 2. Animation commune au survol
+// Animation commune au survol
 const hoverEffect = {
   scale: 1.02,
   borderColor: "rgba(255, 255, 255, 0.4)",
@@ -68,11 +68,11 @@ function ProfilFunction() {
         initial="hidden"
         animate="visible"
         exit={{ opacity: 0 }}
-        className="grid grid-cols-[350px_550px] gap-20 max-w-5xl mx-auto items-start"
+        className="grid grid-cols-1 lg:grid-cols-[350px_550px] gap-10 lg:gap-20 max-w-5xl mx-auto items-start px-6"
       >
         <motion.div
           variants={itemVariants}
-          className="sticky top-10 flex flex-col"
+          className="lg:sticky lg:top-10 flex flex-col"
         >
           <motion.div
             whileHover={hoverEffect}

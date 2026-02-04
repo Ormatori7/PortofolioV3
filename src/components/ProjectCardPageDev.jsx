@@ -1,5 +1,5 @@
 import SkillCard, { ThemeGlass } from "./skillsCard";
-import HugeCardFunction from "./HugeProjectCard";
+import HugeDevCard from "./HugeProjectCardDev";
 import { AnimatePresence, motion } from "framer-motion";
 
 const containerVariants = {
@@ -15,7 +15,7 @@ const itemVariants = {
   visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-function Page3DProject({ datapage }) {
+function PageDevProject({ datapage }) {
   const {
     titre,
     AppUsed,
@@ -30,7 +30,6 @@ function Page3DProject({ datapage }) {
     titre2,
     HugeCardData,
   } = datapage; // les données a envoyés a la page / tt ce qu'on va remplir
-
   return (
     <motion.section
       variants={containerVariants}
@@ -79,6 +78,7 @@ function Page3DProject({ datapage }) {
         variants={itemVariants}
         className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-32"
       >
+        {/* Affiche les 3 cartes d'infos du projet (Détails, Description, But)*/}
         {[
           { label: details, content: texte1 },
           { label: projectDescription, content: texte2 },
@@ -110,7 +110,8 @@ function Page3DProject({ datapage }) {
         <AnimatePresence mode="popLayout">
           {HugeCardData.map((card, index) => (
             <motion.div key={index} variants={itemVariants} layout>
-              <HugeCardFunction {...card} position={index} />
+              <HugeDevCard {...card} position={index} />
+              {/* ...card permet de créer une prop pour chaque elemnt au lieu de tt recrire */}
             </motion.div>
           ))}
         </AnimatePresence>
@@ -119,4 +120,4 @@ function Page3DProject({ datapage }) {
   );
 }
 
-export default Page3DProject;
+export default PageDevProject;

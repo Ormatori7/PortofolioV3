@@ -65,8 +65,8 @@ function Acceuil({ setPage }) {
           transition={{ delay: 0.4 }}
           className="text-white text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light italic"
         >
-          "Where <span className="text-white font-normal">code </span> meet{" "}
-          <span className="text-white font-normal"> 3D</span>."
+          "Where <span className="text-white font-normal">code </span> and{" "}
+          <span className="text-white font-normal"> 3D</span> become one."
         </motion.p>
 
         <motion.div

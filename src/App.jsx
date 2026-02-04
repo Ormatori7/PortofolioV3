@@ -10,6 +10,7 @@ import FnafPage from "./pages/Projects/PageFnaf.jsx";
 import Background from "./components/Background.jsx";
 import Footer from "./components/Footer.jsx";
 import PageEntity from "./pages/Projects/PageEntity.jsx";
+import PythonAiPage from "./pages/Projects/PagePythonAI.jsx";
 
 function App() {
   // On initialise l'état sur "home" par défaut
@@ -28,14 +29,9 @@ function App() {
       <Background />
       {/* On passe "setPage" à la NavBar pour que les boutons fonctionnent
       //expemple employer et patron */}
-      <NavBar 
-      page={page} 
-      setPage={setPage} 
-    
-    />
+      <NavBar page={page} setPage={setPage} />
 
       <main className={page.startsWith("Page") ? "pt-0" : "pt-20"}>
-        
         {/* //logique de telecommande et de télé */}
 
         {page === "Acceuil" && <Acceuil setPage={setPage} />}
@@ -47,9 +43,11 @@ function App() {
         {/* Page de project */}
         {page === "PageProject1" && <PageProject setPage={setPage} />}
 
-        {page === "PageFnaf" && <FnafPage setPage={setPage} />}
+        {page === "PageFnaf" && <FnafPage />}
 
-        {page === "PageEntity" && <PageEntity setPage={setPage} />}
+        {page === "PageEntity" && <PageEntity />}
+
+        {page === "PagePythonAI" && <PythonAiPage />}
       </main>
       <Footer setPage={setPage} />
     </div>
