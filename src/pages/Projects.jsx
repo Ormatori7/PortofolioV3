@@ -50,6 +50,14 @@ function ProjectsFunction({ setPage }) {
       categorie: "dev",
       pageTarget: "PagePythonAI",
     },
+    {
+      titre: "file organizer ",
+      description:
+        "An python script to quickly organize a folder ",
+      image: "./images/folder.jpg",
+      categorie: "dev",
+      pageTarget: "PageOrganisateurFichier",
+    },
   ];
   //cerveau du systeme de filtrage
   // le ? et le / => comme if/else simplifier

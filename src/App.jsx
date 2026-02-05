@@ -11,6 +11,7 @@ import Background from "./components/Background.jsx";
 import Footer from "./components/Footer.jsx";
 import PageEntity from "./pages/Projects/PageEntity.jsx";
 import PythonAiPage from "./pages/Projects/PagePythonAI.jsx";
+import PythonOrganisateur from "./pages/Projects/PageOrganisateurFichier.jsx";
 
 function App() {
   // On initialise l'état sur "home" par défaut
@@ -48,6 +49,8 @@ function App() {
         {page === "PageEntity" && <PageEntity />}
 
         {page === "PagePythonAI" && <PythonAiPage />}
+
+        {page === "PageOrganisateurFichier" && <PythonOrganisateur />}
       </main>
       <Footer setPage={setPage} />
     </div>
