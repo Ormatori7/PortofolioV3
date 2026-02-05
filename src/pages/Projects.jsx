@@ -46,7 +46,7 @@ function ProjectsFunction({ setPage }) {
       titre: "Python gesture-based control",
       description:
         "An python script to allow gesture-based control on application ",
-      image: "./images/0001.png",
+      image: "./images/PythonAiImage/TwoHands.png",
       categorie: "dev",
       pageTarget: "PagePythonAI",
     },

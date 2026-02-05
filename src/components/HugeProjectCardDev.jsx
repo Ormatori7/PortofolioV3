@@ -34,13 +34,15 @@ function HugeDevCard({
             <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
             <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
             <span className="ml-auto text-[10px] text-white/30 font-mono tracking-widest uppercase">
-              {language || "python"}
+              {language || "pas de language"}
             </span>
           </div>
 
           {/* Zone du code */}
           <div className="p-5 font-mono text-[13px] leading-relaxed overflow-x-auto custom-scrollbar h-full text-left bg-[#0d0d0d]">
-            <pre className="text-violet-200/90 whitespace-pre">
+            {/* balise pre sert à afficher du texte  "préformaté" */}
+            {/* whitespace-pre-wrap => pour le retour a la ligne */}
+            <pre className="text-violet-200/90 whitespace-pre-wrap"> 
               <code>{code || "# pas de code"}</code>
               {/* les || c'est pour dire s'il n'y a rien alors met ca */}
             </pre>

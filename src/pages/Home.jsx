@@ -55,7 +55,7 @@ function Acceuil({ setPage }) {
           Welcome in my
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-violet-600 to-indigo-400 animate-gradient-x">
-            portofolio
+            portfolio
           </span>
         </h1>
 

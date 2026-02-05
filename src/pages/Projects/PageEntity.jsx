@@ -1,5 +1,5 @@
 import Page3DProject from "../../components/ProjectCardPage3D.jsx";
-import BoxCarousel from "../../components/CarrouselArrow.jsx";
+import ContinuousCarousel from "../../components/Carrousel.jsx";
 
 const DataForPage = {
   titre: "The soul of the entity",
@@ -55,14 +55,14 @@ const DataForPage = {
   ],
 };
 
-const projectScreenshots = [
-  "./images/EntityImage/farm.png",
-  "./images/EntityImage/autel.png",
-  "./images/EntityImage/church.png",
-  "./images/EntityImage/grave.png",
-  "./images/EntityImage/Pumpkin Area.png",
-  "./images/EntityImage/camping.png",
-  "./images/EntityImage/DoorClose.png",
+const MapImage = [
+  { image: "./images/EntityImage/farm.png", titre: "The Farm" },
+  { image: "./images/EntityImage/autel.png", titre: "The Altar" },
+  { image: "./images/EntityImage/church.png", titre: "The Church" },
+  { image: "./images/EntityImage/grave.png", titre: "The Grave Area" },
+  { image: "./images/EntityImage/Pumpkin Area.png", titre: "The Pumpkin Area" },
+  { image: "./images/EntityImage/camping.png", titre: "The Camp" },
+  { image: "./images/EntityImage/DoorClose.png", titre: "The Gate" },
 ];
 
 function EntityPage({ setPage }) {
@@ -72,9 +72,9 @@ function EntityPage({ setPage }) {
 
       <div className="pb-20 pt-15">
         <h2 className="text-center text-white text-3xl font-black uppercase tracking-tighter mb-10">
-          Map preview
+          movement preview
         </h2>
-        <BoxCarousel images={projectScreenshots} />
+        <ContinuousCarousel data={MapImage} />
       </div>
     </>
   );
