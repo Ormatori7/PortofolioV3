@@ -139,21 +139,34 @@ IntersectionObserver | Méthode pro pour détecter la section active.
 
 
 ICONS IMPORT
-npm install react-icons
-npm install react-icons@latest
+-npm install react-icons
+-npm install react-icons@latest
 
 
 
 Carroussel
-npm install embla-carousel-autoplay
-npm install embla-carousel-react embla-carousel-autoplay
+-npm install embla-carousel-autoplay
+-npm install embla-carousel-react embla-carousel-autoplay
 
 // carrousel auto et non sacadé
-npm install embla-carousel-auto-scroll
+-npm install embla-carousel-auto-scroll
 
 //petit paquet très pratique pour envoyer ton dossier de build automatiquement vers GitHub.
-npm install gh-pages --save-dev
+-npm install gh-pages --save-dev
 
 
 //pour deployer de nouveau le site sur les erveurs de github
-npm run deploy
+-npm run deploy
+
+
+
+-npm install three @types/three @react-three/fiber @react-three/drei
+three : C'est le moteur de base. Sans lui, rien ne s'affiche.
+@react-three/fiber : C'est le pont. Il permet à React de parler à Three.js avec des composants (comme <mesh />)
+@react-three/drei : C'est la boîte à outils. Elle contient des fonctions prêtes à l'emploi pour charger des modèles, ajouter des contrôles de caméra, etc.
+
+-npx gltfjsx public/3D_PortofolioModel.glb --transform
+intégrer de la 3D dans React
+npx gltfjsx : C'est un utilitaire qui transforme ton fichier binaire 3D (GLB) en un composant React (.jsx) lisible
+--transform : C'est le réglage "Pro". Il ne se contente pas de créer le code, il optimise ton modèle pour le web
+Il réduit encore la taille du fichier (souvent de 50% à 90%) pour qu'il se charge instantanément

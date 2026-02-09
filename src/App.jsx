@@ -12,6 +12,7 @@ import Footer from "./components/Footer.jsx";
 import PageEntity from "./pages/Projects/PageEntity.jsx";
 import PythonAiPage from "./pages/Projects/PagePythonAI.jsx";
 import PythonOrganisateur from "./pages/Projects/PageOrganisateurFichier.jsx";
+import PageForReactor from "./pages/Projects/PageReactor.jsx";
 
 function App() {
   // On initialise l'état sur "home" par défaut
@@ -41,8 +42,8 @@ function App() {
 
         {page === "ProjectsFunction" && <ProjectsFunction setPage={setPage} />}
 
-        {/* Page de project */}
-        {page === "PageProject1" && <PageProject setPage={setPage} />}
+        {/* Page de project test */}
+        {page === "PageProject1" && <PageProject />}
 
         {page === "PageFnaf" && <FnafPage />}
 
@@ -51,6 +52,8 @@ function App() {
         {page === "PagePythonAI" && <PythonAiPage />}
 
         {page === "PageOrganisateurFichier" && <PythonOrganisateur />}
+
+        {page === "PageReactor" && <PageForReactor />}
       </main>
       <Footer setPage={setPage} />
     </div>

@@ -12,6 +12,7 @@ import {
   SiBlender,
   SiUnrealengine,
   SiPython,
+  SiThreedotjs,
 } from "react-icons/si";
 import { HiUser, HiCode, HiCube, HiAcademicCap } from "react-icons/hi";
 import { Github } from "lucide-react";
@@ -55,6 +56,8 @@ function ProfilFunction() {
     { name: "Node.js", icon: <SiNodedotjs />, category: "dev" },
     { name: "Python", icon: <SiPython />, category: "dev" },
     { name: "C#", icon: <TbBrandCSharp />, category: "dev" },
+    { name: "Three.js", icon: <SiThreedotjs />, category: "dev" },
+    { name: "React Three fiber", icon: <SiThreedotjs />, category: "dev" },
 
     //3D
     { name: "Blender", icon: <SiBlender />, category: "3D" },

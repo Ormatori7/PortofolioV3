@@ -51,12 +51,20 @@ function ProjectsFunction({ setPage }) {
       pageTarget: "PagePythonAI",
     },
     {
-      titre: "file organizer ",
+      titre: "File organizer ",
       description:
         "An python script to quickly organize a folder ",
       image: "./images/folder.jpg",
       categorie: "dev",
       pageTarget: "PageOrganisateurFichier",
+    },
+    {
+      titre: "3D model implementation",
+      description:
+        "The implementation of a 3D model in a React application using React Three Fiber.",
+      image: "./images/R3F.png",
+      categorie: "dev",
+      pageTarget: "PageReactor",
     },
   ];
   //cerveau du systeme de filtrage
