@@ -1,102 +1,83 @@
 import Page3DProject from "../../components/ProjectCardPage3D.jsx";
 import ContinuousCarousel from "../../components/Carrousel.jsx";
 import BoxCarousel from "../../components/CarrouselArrow.jsx";
-
-const DataForPage = {
-  titre: "Fnaf remake",
-  AppUsed: ["Unreal Engine"],
-  sousTitre:
-    "The handmade remake of an famous game in order to learn the 3D software Unreal Engine ",
-  imagePrincipal: "./images/FnafImage/BonnyCloseCam.png",
-
-  details: "Project details",
-  texte1:
-    "Developed in two weeks, this solo project encompassed every aspect of animatronics to programming core gameplay mechanics, excets for 3D modelling, using Unreal Engine's Blueprints.",
-
-  projectDescription: "Project description",
-  texte2:
-    "This project is a faithful remake of the original Five Nights at Freddy's. The primary objective was to recreate the oppressive atmosphere of the security office by engineering an unpredictable AI system and a high-fidelity environment.",
-
-  but: "The goal of the game",
-  texte3:
-    "The mission: survive the night shift from 12 AM to 6 AM for five consecutive nights while managing critical power resources.",
-
-  titre2: "A preview of this game content and developement",
-  HugeCardData: [
-    {
-      titre: "Modular AI System",
-      description:
-        "Actor-based AI logic to provide for animatronic some movement and dynamic pathfinding based on actor points.",
-      image: "./images/FnafImage/MainStagefnaf.png",
-      categorie: "feature",
-      position: "0",
-    },
-    {
-      titre: "Ai Path",
-      description:
-        "As the hours pass, the animatronics grow increasingly aggressive, stalking through the shadows of the facility. They will attempt to breach your office by any means necessary, keep a watchful eye on every sector, or face the consequences of a security failure...",
-      image: "./images/FnafImage/BonnyCloseCam.png",
-      categorie: "feature",
-      position: "1",
-    },
-    {
-      titre: "Survival Mechanics",
-      description:
-        "Resource-based gameplay where every action (lights, doors, CCTV) drains a limited power supply, leaving the player vulnerable.",
-      image: "./images/FnafImage/DoorFnaf.png",
-      categorie: "dev",
-      position: "0",
-    },
-    {
-      titre: "Ik Head System",
-      description:
-        "Animatronics utilize an IK (Inverse Kinematics) system to procedurally track the player's camera after a predefined delay, increasing the sense of unease",
-      image: "./images/FnafImage/Awake.png",
-      categorie: "dev",
-      position: "1",
-    },
-  ],
-};
-
-const MenuImage = [
-  { image: "./images/FnafImage/chica.png", titre: "Chica" },
-  { image: "./images/FnafImage/foxy.png", titre: "Foxy" },
-  { image: "./images/FnafImage/MainMenuFnaf.png", titre: "Bonnie" },
-  { image: "./images/FnafImage/freddy.png", titre: "Freddy" },
-];
-
-const projectScreenshots = [
-  "./images/FnafImage/stage.png",
-  "./images/FnafImage/partyRoom.png",
-  "./images/FnafImage/piratecurtain.png",
-  "./images/FnafImage/maintenance.png",
-  "./images/FnafImage/restrooms.png",
-  "./images/FnafImage/kitchen.png",
-  "./images/FnafImage/lefthallway.png",
-  "./images/FnafImage/RightHallway.png",
-  "./images/FnafImage/storage.png",
-  "./images/FnafImage/RightCorner.png",
-  "./images/FnafImage/LeftCorner.png",
-  "./images/FnafImage/office.png",
-];
+import { supabase } from "../../supabaseClient.js";
+import { useState, useEffect } from "react";
 
 function FnafPage({}) {
+  //variable et la function de mise a jour
+  const [dataForPage, setDataForPage] = useState(null);
+  useEffect(() => {
+    const chargementDonnes = async () => {
+      //-----LES INFOS DE LA PAGE FNAF-----
+      const { data: projectInfo, error: projectError } = await supabase
+        .from("Project_list")
+        .select("*")
+        .eq("id", 1)
+        .single();
+
+      //-----LES INFOS DES CARTES DE LA PAGE FNAF-----
+      // on precise le data et error pour ne pas les confondre avec ceux de la requete suivante
+      const { data: projectCards, error: cardsError } = await supabase
+        .from("Card3D_content")
+        .select("*")
+        .eq("project_ID", 1) // On utilise la clé étrangère pour le filtrage
+        .order("position", { ascending: true }); // l'ordre des cartes
+
+      //-----LES IMAGES DU CARROUSEL DE LA PAGE FNAF AUTO/ PAS AUTO-----
+      const { data: galleryImages, error: galleryError } = await supabase
+        .from("Carrousel")
+        .select("*")
+        .eq("project_ID", 1) // Uniquement les elemnt lié a la page FNAF
+        .order("position", { ascending: true }); //dans l'ordre
+
+      //si aucune erreur dans les trois requetes alors on continue
+      if (!projectError && !cardsError && !galleryError) {
+        setDataForPage({
+          ...projectInfo, // On va chercher ttes les infos d'un coup pour ne pas devoir les ecrire une par une pour la page fnaf
+          HugeCardData: projectCards, // On met le tableau des cartes au bon endroit
+          MenuImage: galleryImages.filter((img) => img.type === "auto"), // On met le tableau filtré des images du carrousel auto
+          // On filtre pour ne garder que les lignes de type "map"
+          // On utilise .map pour n'extraire que l'URL de l'image (on transforme l'objet en texte)
+          MapImage: galleryImages
+            .filter((img) => img.type === "map")
+            .map((img) => img.image),
+        });
+      } else {
+        console.error(
+          "Erreur Supabase :",
+          projectError || cardsError || galleryError,
+        );
+      }
+    };
+    chargementDonnes(); // on l'appelle directement pour que ça se lance au demarrage de la page comme d'hab
+  }, []);
+
+  //------BARIERE DE SECURITE POUR LE CHARGEMENT DES DATA-----
+  if (!dataForPage) {
+    return (
+      <div className="text-white text-center pt-50 pb-20">
+        Chargement du projet...
+      </div>
+    );
+  }
+
   return (
     <>
-      <Page3DProject datapage={DataForPage} />
+      <Page3DProject datapage={dataForPage} />
 
       <div className="pb-20 pt-15">
         <h2 className="text-center text-white text-3xl font-black uppercase tracking-tighter mb-10">
           Menu Preview
         </h2>
-        <ContinuousCarousel data={MenuImage} />
+        <ContinuousCarousel data={dataForPage.MenuImage} />
       </div>
 
       <div className="pb-20 pt-15">
         <h2 className="text-center text-white text-3xl font-black uppercase tracking-tighter mb-10">
           Map preview
         </h2>
-        <BoxCarousel images={projectScreenshots} />
+        <BoxCarousel images={dataForPage.MapImage} />
       </div>
     </>
   );

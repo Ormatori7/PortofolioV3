@@ -42,7 +42,7 @@ function Footer({ setPage }) {
 
         
         <div className="text-center text-[9px] uppercase tracking-[0.6em] text-white/50">
-          © 2026 Moura Antoine — Built with React & Tailwind
+          © 2026 Moura Antoine — Built with React/ Tailwind/ Supabase
         </div>
       </div>
     </footer>

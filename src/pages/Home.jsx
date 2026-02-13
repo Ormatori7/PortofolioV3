@@ -1,4 +1,9 @@
+//pour les animations
 import { motion } from "framer-motion";
+// pour créer une mémoire locale pour le composant
+//déclencher une action comme lire une base de données par ex
+import { useState, useEffect } from "react";
+import { supabase } from "../supabaseClient"; // le lier au JS qui a la ref de mon API et de mon URL
 
 function BoutonVersProfil({ texte, action }) {
   return (
@@ -19,6 +24,34 @@ function BoutonVersProfil({ texte, action }) {
 }
 
 function Acceuil({ setPage }) {
+  //une variable memoire pour un état pour stocker ce que Supabase va me renvoyer
+  //est de base null car ne posséde rien tant que datatbase n'as rien donné
+  //le content en lui mme et le content que tu vas lui donner
+  const [content, setContent] = useState(null);
+
+  useEffect(() => {
+    // On définit l'action de lecture des données
+    const chargementDonnees = async () => {
+      // On demande à Supabase les infos de ta table 'Home_content'
+      const { data, error } = await supabase // on attend en mme temp pour la reponse
+        .from("Home_content") // la table dans laquelle on veut aller lire les données
+        .select("status_text") // On choisit uniquement la colonne du texte de statut // pour tt avoir on fait select("*")
+        // On récupère uniquement la ligne qui a l'ID 1 car c'est celle qui continet les elemnts de la page Home (c'est l'id de la ligne)
+        //si on a besoin de pluseiurs ligne differente on fait : .in("id", [1, 3]);    // et on doit aussi supp le .single
+        .eq("id", 1)
+        .single(); // On demande un objet unique (pas une liste) //permet de decouper ma ligne en item unique et de ne pas a avoir a preciser a chaque fois quel id de la ligne on veut lire
+
+      //si pas d'erreur alors on continue
+      if (!error) {
+        setContent(data); // On enregistre le texte reçu dans l'espace content
+      } else {
+        console.error("Probleme de connexion:", error.message);
+      }
+    };
+    // On lance l'action de récupération immédiatement aprés avoir tt defini
+    chargementDonnees();
+  }, []); // Le tableau vide [] garantit que l'action ne se lance qu'une fois au démarrage
+
   return (
     <section className="relative min-h-dvh w-full flex flex-col items-center justify-center px-4 overflow-hidden">
       {/* --- FOND DYNAMIQUE --- */}
@@ -48,14 +81,15 @@ function Acceuil({ setPage }) {
           transition={{ delay: 0.2 }}
           className="inline-block px-4 py-1.5 mb-6 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-400 text-xs font-bold uppercase tracking-widest"
         >
-          Available for new opportunities and 3D challenges
+          {/* On vérifie si content existe, sinon on affiche un texte de secours si il y a rien */}
+          {content?.status_text ? content.status_text : "Text unavailable..."}
         </motion.div>
 
         <h1 className="text-6xl md:text-8xl font-black text-white mb-6 tracking-tighter">
           Welcome in my
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-violet-600 to-indigo-400 animate-gradient-x">
-            portfolio
+            Portfolio
           </span>
         </h1>
 

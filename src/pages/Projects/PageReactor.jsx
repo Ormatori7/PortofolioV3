@@ -5,47 +5,8 @@ import { Loader } from "@react-three/drei";
 import { OrbitControls, Environment, ContactShadows } from "@react-three/drei";
 import { MeshReflectorMaterial } from "@react-three/drei";
 import PageDevProject from "../../components/ProjectCardPageDev";
-
-const DataForPage = {
-  titre: "3D model implementation",
-  AppUsed: ["React Three Fiber", "React"],
-  sousTitre:
-    "The implementation of a 3D model in a React application using React Three Fiber.",
-  imagePrincipal: "./images/R3F_2.png",
-
-  details: "Project details",
-  texte1:
-    "Developed in 1 day, this project was created to learn how code can meet 3D in the without even leaving a website",
-
-  projectDescription: "Project description",
-  texte2:
-    "This project was developed in React Three Fiber wich is a React renderer for Three.js. It allows to create and manipulate 3D content in a React website using the powerfull library Three.js. ",
-
-  but: "The goal of the project",
-  texte3:
-    "The main goal of this project was to learn how to implement a 3D model in a React website and to create a simple scene with lighting and reflections.",
-
-  titre2: "A preview of this project content and developement",
-  HugeCardData: [
-    {
-      code: "-npm install three @types/three @react-three/fiber @react-three/drei",
-      language: "R3F",
-      titre: "The Installation",
-      description: "Those are the library needed to perfom the different task.",
-      categorie: "installation",
-      position: "1",
-    },
-    {
-      code: "-npx gltfjsx public/3D_PortofolioModel.glb --transform",
-      language: "R3F",
-      titre: "The Compression of the 3D model",
-      description:
-        "This command compresses the 3D model into a format compatible with React Three Fiber which is the .jsx file. After that you can import the model as a component and use it in your scene.",
-      categorie: "compression",
-      position: "1",
-    },
-  ],
-};
+import { supabase } from "../../supabaseClient.js";
+import { useState, useEffect } from "react";
 
 function ModelInPage() {
   return (
@@ -110,9 +71,45 @@ function ModelInPage() {
 }
 
 function PageForReactor() {
+  const [dataForPage, setDataForPage] = useState(null);
+  useEffect(() => {
+    const chargementDonnes = async () => {
+      const { data: projectInfo, error: projectError } = await supabase
+        .from("Project_list")
+        .select("*")
+        .eq("id", 5)
+        .single();
+
+      const { data: projectCards, error: cardsError } = await supabase
+        .from("CardDev_content")
+        .select("*")
+        .eq("project_ID", 5)
+        //pas de single car on veut tt les éléments de la page et pas juste un seul
+        .order("position", { ascending: true });
+
+      if (!projectError && !cardsError) {
+        // console.log("Mes cartes reçues :", projectCards); => debugage pour voir si les cards sont bien la
+        setDataForPage({
+          ...projectInfo,
+          HugeCardData: projectCards,
+        });
+      } else {
+        console.error("Erreur Supabase :", projectError || cardsError);
+      }
+    };
+    chargementDonnes();
+  }, []);
+
+  if (!dataForPage) {
+    return (
+      <div className="text-white text-center pt-50 pb-20">
+        Chargement du projet...
+      </div>
+    );
+  }
   return (
     <>
-      <PageDevProject datapage={DataForPage} />
+      <PageDevProject datapage={dataForPage} />
       <div className="pb-20 pt-15 text-center text-white">
         <h2 className="  text-3xl font-black uppercase tracking-tighter mb-10">
           A preview of the 3D model implementation

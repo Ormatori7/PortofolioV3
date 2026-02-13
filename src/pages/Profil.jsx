@@ -17,6 +17,8 @@ import {
 import { HiUser, HiCode, HiCube, HiAcademicCap } from "react-icons/hi";
 import { Github } from "lucide-react";
 import { TbBrandCSharp } from "react-icons/tb";
+import { useState, useEffect } from "react";
+import { supabase } from "../supabaseClient";
 
 // Variantes pour l'effet de cascade ( appellé Stagger)
 const containerVariants = {
@@ -47,6 +49,24 @@ const hoverEffect = {
 };
 
 function ProfilFunction() {
+  
+  const [content, setContent] = useState(null);
+  useEffect(() => {
+    const chargementDonnes = async () => {
+      const { data, error } = await supabase
+        .from("Profil_content")
+        .select("*")
+        .eq("id", 1)
+        .single();
+      if (!error) {
+        setContent(data);
+      } else {
+        console.error("Probleme de chargement:", error.message);
+      }
+    };
+    chargementDonnes(); // on l'appelle directement pour que ça se lance au demarrage de la page
+  }, []);
+
   const skills = [
     { name: "React.js", icon: <SiReact />, category: "dev" },
     { name: "Tailwind", icon: <SiTailwindcss />, category: "dev" },
@@ -83,7 +103,11 @@ function ProfilFunction() {
           >
             <div className="relative overflow-hidden rounded-2xl w-full aspect-square">
               <img
-                src="./images/0001.png"
+                src={
+                  content?.image_profil
+                    ? content.image_profil
+                    : "image unavailable"
+                }
                 alt="imageProfil"
                 className="w-full h-full object-cover"
               />
@@ -133,12 +157,7 @@ function ProfilFunction() {
               </h2>
             </div>
             <p className="text-white/70 text-base font-light border-l-2 border-blue-500/20 pl-5 ">
-              Passionate{" "}
-              <span className="text-white font-medium">Developer</span> and{" "}
-              <span className="text-white font-medium">3D Artist</span>{" "}
-              dedicated to crafting immersive digital experiences. I bridge the
-              gap between code and art by blending software development with 3D
-              to bring innovative concepts to life.
+              {content?.about_me ? content.about_me : "text unavailable"}
             </p>
           </motion.div>
 
@@ -224,6 +243,7 @@ function ProfilFunction() {
                 ))}
             </div>
           </motion.div>
+          
         </div>
       </motion.div>
     </section>

@@ -1,80 +1,66 @@
 import Page3DProject from "../../components/ProjectCardPage3D.jsx";
 import ContinuousCarousel from "../../components/Carrousel.jsx";
+import { supabase } from "../../supabaseClient.js";
+import { useState, useEffect } from "react";
 
-const DataForPage = {
-  titre: "The soul of the entity",
-  AppUsed: ["Unreal Engine", "Blender"],
-  sousTitre:
-    "An handmade project on the halloween theme in order to learn blender and insert this knowledge into the game ",
-  imagePrincipal: "./images/EntityImage/Mainmenu.png",
 
-  details: "Project details",
-  texte1:
-    "Born from a one-week development marathon, this project explores the boundaries of atmospheric horror. As a survivor trapped in a nightmare forest, you must locate the 6 pieces of an entity's soul to escape this place.On days you can navigate without fear on this forest but on nights, silence is your only ally: move carefully through the shadows, for the entity is always listening, and every sound could be your last...",
-
-  projectDescription: "Project description",
-  texte2:
-    "A complete end-to-end solo production. From initial 3D modeling and environment design to core system architecture, every asset and line of code was handcrafted within a rigorous 7-day development sprint.",
-
-  but: "The goal of the game",
-  texte3:
-    "The mission: Find the 6 shards on the map and escape by the main gate before the entity catch you...",
-
-  titre2: "A preview of this game content and developement",
-  HugeCardData: [
-    {
-      titre: "Volumetric Shadows",
-      description:
-        "Advanced volumetric fog and shadow systems implemented to enhance the spooky atmosphere while maintaining high performance.",
-      image: "./images/EntityImage/doorCloseLantern.png",
-      categorie: "feature",
-      position: "0",
-    },
-    {
-      titre: "The Magic Lantern",
-      description:
-        "You can right click in order to use your magic lantern. While active, the lantern manage to open doors but also scare away the entity.",
-      image: "./images/EntityImage/DoorOpenlantern.png",
-      categorie: "feature",
-      position: "1",
-    },
-    {
-      titre: "On Day",
-      description: "What the game look like on day",
-      image: "./images/EntityImage/lightOn.png",
-      categorie: "Preview",
-      position: "0",
-    },
-    {
-      titre: "On Night",
-      description: "What the game look like on night",
-      image: "./images/EntityImage/LightOFF.png",
-      categorie: "Preview",
-      position: "1",
-    },
-  ],
-};
-
-const MapImage = [
-  { image: "./images/EntityImage/farm.png", titre: "The Farm" },
-  { image: "./images/EntityImage/autel.png", titre: "The Altar" },
-  { image: "./images/EntityImage/church.png", titre: "The Church" },
-  { image: "./images/EntityImage/grave.png", titre: "The Grave Area" },
-  { image: "./images/EntityImage/Pumpkin Area.png", titre: "The Pumpkin Area" },
-  { image: "./images/EntityImage/camping.png", titre: "The Camp" },
-  { image: "./images/EntityImage/DoorClose.png", titre: "The Gate" },
-];
 
 function EntityPage({ setPage }) {
+  const [dataForPage, setDataForPage] = useState(null);
+  useEffect(() => {
+    const chargementDonnes = async () => {
+      const { data: projectInfo, error: projectError } = await supabase
+        .from("Project_list")
+        .select("*")
+        .eq("id", 2)
+        .single();
+
+      const { data: projectCards, error: cardsError } = await supabase
+        .from("Card3D_content")
+        .select("*")
+        .eq("project_ID", 2)
+        //pas de single car on veut tt les éléments de la page et pas juste un seul
+        .order("position", { ascending: true });
+
+      const { data: galleryImages, error: galleryError } = await supabase
+        .from("Carrousel")
+        .select("*")
+        .eq("project_ID", 2) // Uniquement les elemnt lié a la page entity
+        .order("position", { ascending: true }); //dans l'ordre
+
+      if (!projectError && !cardsError && !galleryError) {
+        setDataForPage({
+          ...projectInfo,
+          HugeCardData: projectCards,
+          MapImage: galleryImages.filter((img) => img.type === "auto"),
+        });
+      } else {
+        console.error(
+          "Erreur Supabase :",
+          projectError || cardsError || galleryError,
+        );
+      }
+    };
+    chargementDonnes();
+  }, []);
+
+  if (!dataForPage) {
+    return (
+      <div className="text-white text-center pt-50 pb-20">
+        Chargement du projet...
+      </div>
+    );
+  }
+
   return (
     <>
-      <Page3DProject setPage={setPage} datapage={DataForPage} />
+      <Page3DProject setPage={setPage} datapage={dataForPage} />
 
       <div className="pb-20 pt-15">
         <h2 className="text-center text-white text-3xl font-black uppercase tracking-tighter mb-10">
-          movement preview
+          map preview
         </h2>
-        <ContinuousCarousel data={MapImage} />
+        <ContinuousCarousel data={dataForPage.MapImage} />
       </div>
     </>
   );

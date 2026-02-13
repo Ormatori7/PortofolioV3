@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProjectsCardFunction from "../components/projectsCard";
 import { AnimatePresence, motion } from "framer-motion";
+import { supabase } from "../supabaseClient";
 
 // Variantes pour l'apparition en cascade du header et des filtres
 const containerVariants = {
@@ -25,54 +26,37 @@ const itemVariants = {
 
 function ProjectsFunction({ setPage }) {
   const [cardID, setcardID] = useState("tous"); //pour la telecommande pour tt montrer au début
+  const [projectsCardData, setProjectsCardData] = useState(null);
+  useEffect(() => {
+    const chargementDonnes = async () => {
+      const { data: cardinfo, error: cardError } = await supabase
+        .from("pageProject")
+        .select("*");
+      // pas de .eq ni de single car on veut tt
+      if (!cardError) {
+        setProjectsCardData(cardinfo);
+      } else {
+        console.error("Problème de chargement", cardError.message);
+      }
+    };
+    chargementDonnes();
+  }, []);
 
-  const projectsCard = [
-    {
-      titre: "Fnaf remake",
-      description: "A remake of the masterpiece game Five Nights At Freddy's.",
-      image: "./images/FnafImage/freddy.png",
-      categorie: "3D",
-      pageTarget: "PageFnaf",
-    },
-    {
-      titre: "The soul of the entity",
-      description:
-        "An Game based on Halloween theme all created by myself in one week",
-      image: "./images/EntityImage/Mainmenu.png",
-      categorie: "3D",
-      pageTarget: "PageEntity",
-    },
-    {
-      titre: "Python gesture-based control",
-      description:
-        "An python script to allow gesture-based control on application ",
-      image: "./images/PythonAiImage/TwoHands.png",
-      categorie: "dev",
-      pageTarget: "PagePythonAI",
-    },
-    {
-      titre: "File organizer ",
-      description:
-        "An python script to quickly organize a folder ",
-      image: "./images/folder.jpg",
-      categorie: "dev",
-      pageTarget: "PageOrganisateurFichier",
-    },
-    {
-      titre: "3D model implementation",
-      description:
-        "The implementation of a 3D model in a React application using React Three Fiber.",
-      image: "./images/R3F.png",
-      categorie: "dev",
-      pageTarget: "PageReactor",
-    },
-  ];
+  //------BARIERE DE SECURITE POUR LE CHARGEMENT DES DATA-----
+  if (!projectsCardData) {
+    return (
+      <div className="text-white text-center pt-50 pb-20">
+        Chargement des projets...
+      </div>
+    );
+  }
+
   //cerveau du systeme de filtrage
   // le ? et le / => comme if/else simplifier
   const projetsFiltres =
     cardID === "tous" // est ce que cardID vaut tous? si oui alors ... et si non alors ...
-      ? projectsCard //si vrai
-      : projectsCard.filter((projet) => projet.categorie === cardID); // si faux
+      ? projectsCardData //si vrai
+      : projectsCardData.filter((projet) => projet.categorie === cardID); // si faux
 
   return (
     <section className="overflow-hidden flex flex-col text-white">
@@ -128,7 +112,7 @@ function ProjectsFunction({ setPage }) {
                   ? "All"
                   : cat === "dev"
                     ? "Development"
-                    : "3D Modelling"}
+                    : "3D project"}
               </motion.button>
             ))}
           </motion.div>
