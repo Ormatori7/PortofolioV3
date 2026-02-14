@@ -4,16 +4,14 @@ import ContinuousCarousel from "../../components/Carrousel";
 import BoxCarousel from "../../components/CarrouselArrow";
 import { supabase } from "../../supabaseClient";
 import { useState, useEffect } from "react";
-import { Project, Card3D, GalleryItem, AllData } from "../../types";
-
-
+import { Project, Card3D, GalleryItem, AllData3D } from "../../types";
 
 function FnafPage() {
   //variable et la function de mise a jour
   //project car c'est la notice de types.ts et dit que s'il existe il aura cette structure
-  // Autorise le sac à être soit un "AllData" soit "vide" , et initialise le sac vide
-  
-  const [dataForPage, setDataForPage] = useState<AllData | null>(null);
+  // Autorise le sac à être soit un "AllData3D" soit "vide" , et initialise le sac vide
+
+  const [dataForPage, setDataForPage] = useState<AllData3D | null>(null);
   useEffect(() => {
     const chargementDonnes = async () => {
       //------LA PARTIE DEBALLAGE DES DONNES----------
@@ -31,6 +29,7 @@ function FnafPage() {
         .from("Card3D_content")
         .select("*")
         .eq("project_ID", 1) // On utilise la clé étrangère pour le filtrage
+        //pas de single car on veut tt les éléments de la page et pas juste un seul
         .order("position", { ascending: true }); // l'ordre des cartes
 
       //-----LES IMAGES DU CARROUSEL DE LA PAGE FNAF AUTO/ PAS AUTO-----
@@ -42,22 +41,29 @@ function FnafPage() {
 
       //si aucune erreur dans les trois requetes alors on continue
       // on ajoute aussi le fait de verifier que projectInfo possede bien qlq chose
-      if (!projectError && !cardsError && !galleryError && projectInfo && projectCards && galleryImages) {
+      if (
+        !projectError &&
+        !cardsError &&
+        !galleryError &&
+        projectInfo &&
+        projectCards &&
+        galleryImages
+      ) {
         // On "étiquette" les listes venant de Supabase et on les donne a des variables
         //c'est le test de CONFIANCE (tu jure que variable1 a la structure de GalleryItem)
         const safeProjectInfo = projectInfo as Project; //pas de [] car seul projet
         const safeGallery = galleryImages as GalleryItem[];
         const safeCards = projectCards as Card3D[];
-        
+
         setDataForPage({
           ...safeProjectInfo, // On va chercher ttes les infos d'un coup pour ne pas devoir les ecrire une par une pour la page fnaf
           //on prend aussi les variable etiqueté et non celle qui sont floues
           //on créer les variabel en vert poour stocker les données etiqueté
-          HugeCardData: safeCards, // elle n'apparait pas dans la function Page3DProject car elle est utilisé a l'interieur 
-          MenuImage: safeGallery.filter((img) => img.type === "auto"), // On met le tableau filtré des images du carrousel auto
+          HugeCardData: safeCards, // elle n'apparait pas dans la function Page3DProject car elle est utilisé a l'interieur
+          GalleryFullData: safeGallery.filter((img) => img.type === "auto"), // On met le tableau filtré des images du carrousel auto
           // On filtre pour ne garder que les lignes de type "map"
           // On utilise .map pour n'extraire que l'URL de l'image (on transforme l'objet en texte)
-          MapImage: safeGallery
+          GalleryUrlList: safeGallery
             .filter((img) => img.type === "map")
             .map((img) => img.image),
         });
@@ -83,20 +89,20 @@ function FnafPage() {
   return (
     // ici pas de passage de HugeCardData car elle est passé dans dataForPage directement
     <>
-      <Page3DProject datapage={dataForPage} /> 
+      <Page3DProject datapage={dataForPage} />
 
       <div className="pb-20 pt-15">
         <h2 className="text-center text-white text-3xl font-black uppercase tracking-tighter mb-10">
           Menu Preview
         </h2>
-        <ContinuousCarousel data={dataForPage.MenuImage} />
+        <ContinuousCarousel data={dataForPage.GalleryFullData} />
       </div>
 
       <div className="pb-20 pt-15">
         <h2 className="text-center text-white text-3xl font-black uppercase tracking-tighter mb-10">
           Map preview
         </h2>
-        <BoxCarousel images={dataForPage.MapImage} />
+        <BoxCarousel images={dataForPage.GalleryUrlList} />
       </div>
     </>
   );

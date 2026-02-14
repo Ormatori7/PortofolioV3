@@ -1,37 +1,47 @@
-import PageDevProject from "../../components/ProjectCardPageDev";
-import ContinuousCarousel from "../../components/Carrousel.jsx";
-import { supabase } from "../../supabaseClient.ts";
+import Page3DProject from "../../components/ProjectCardPage3D";
+import ContinuousCarousel from "../../components/Carrousel";
+import { supabase } from "../../supabaseClient";
 import { useState, useEffect } from "react";
+import { Card3D, GalleryItem, Project, AllData3D } from "../../types";
 
-function PythonAi() {
-  const [dataForPage, setDataForPage] = useState(null);
+function EntityPage() {
+  const [dataForPage, setDataForPage] = useState<AllData3D | null>(null);
   useEffect(() => {
     const chargementDonnes = async () => {
       const { data: projectInfo, error: projectError } = await supabase
         .from("Project_list")
         .select("*")
-        .eq("id", 3)
+        .eq("id", 2)
         .single();
 
       const { data: projectCards, error: cardsError } = await supabase
-        .from("CardDev_content")
+        .from("Card3D_content")
         .select("*")
-        .eq("project_ID", 3)
+        .eq("project_ID", 2)
         //pas de single car on veut tt les éléments de la page et pas juste un seul
         .order("position", { ascending: true });
 
       const { data: galleryImages, error: galleryError } = await supabase
         .from("Carrousel")
         .select("*")
-        .eq("project_ID", 3) // Uniquement les elemnt lié a la page pyhton
+        .eq("project_ID", 2) // Uniquement les elemnt lié a la page entity
         .order("position", { ascending: true }); //dans l'ordre
 
-      if (!projectError && !cardsError && !galleryError) {
-        // console.log("Mes cartes reçues :", projectCards); => debugage pour voir si les cards sont bien la
+      if (
+        !projectError &&
+        !cardsError &&
+        !galleryError &&
+        projectInfo &&
+        projectCards &&
+        galleryImages
+      ) {
+        const safeProjectInfo = projectInfo as Project; //pas de [] car seul projet
+        const safeGallery = galleryImages as GalleryItem[];
+        const safeCards = projectCards as Card3D[];
         setDataForPage({
-          ...projectInfo,
-          HugeCardData: projectCards,
-          Image: galleryImages.filter((img) => img.type === "auto"),
+          ...safeProjectInfo,
+          HugeCardData: safeCards,
+          GalleryFullData: safeGallery.filter((img) => img.type === "auto"),
         });
       } else {
         console.error(
@@ -53,15 +63,15 @@ function PythonAi() {
 
   return (
     <>
-      <PageDevProject datapage={dataForPage} />
+      <Page3DProject datapage={dataForPage} />
 
       <div className="pb-20 pt-15">
         <h2 className="text-center text-white text-3xl font-black uppercase tracking-tighter mb-10">
-          movement preview
+          map preview
         </h2>
-        <ContinuousCarousel data={dataForPage.Image} />
+        <ContinuousCarousel data={dataForPage.GalleryFullData} />
       </div>
     </>
   );
 }
-export default PythonAi;
+export default EntityPage;

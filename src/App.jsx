@@ -6,13 +6,13 @@ import Acceuil from "./pages/Home.jsx";
 import ProfilFunction from "./pages/Profil.jsx";
 import ProjectsFunction from "./pages/Projects.jsx";
 import PageProject from "./pages/Projects/PageProject1.jsx";
-import FnafPage from "./pages/Projects/PageFnaf.jsx";
+import FnafPage from "./pages/Projects/PageFnaf.tsx";
 import Background from "./components/Background.jsx";
 import Footer from "./components/Footer.jsx";
-import PageEntity from "./pages/Projects/PageEntity.jsx";
-import PythonAiPage from "./pages/Projects/PagePythonAI.jsx";
-import PythonOrganisateur from "./pages/Projects/PageOrganisateurFichier.jsx";
-import PageForReactor from "./pages/Projects/PageReactor.jsx";
+import PageEntity from "./pages/Projects/PageEntity.tsx";
+import PythonAiPage from "./pages/Projects/PagePythonAI.tsx";
+import PythonOrganisateur from "./pages/Projects/PageOrganisateurFichier.tsx";
+import PageForReactor from "./pages/Projects/PageReactor.tsx";
 
 function App() {
   // On initialise l'état sur "home" par défaut
