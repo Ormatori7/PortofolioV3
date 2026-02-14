@@ -1,5 +1,5 @@
 import PageDevProject from "../../components/ProjectCardPageDev";
-import { supabase } from "../../supabaseClient.js";
+import { supabase } from "../../supabaseClient.ts";
 import { useState, useEffect } from "react";
 
 function PythonOrganisateur({}) {

@@ -1,0 +1,51 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // File Layout
+    // "rootDir": "./src",
+    // "outDir": "./dist",
+
+    // Environment Settings
+    // See also https://aka.ms/tsconfig/module
+    "module": "ESNext", // Changé de nodenext à ESNext pour Vite
+    "moduleResolution": "Bundler", // INDISPENSABLE : permet d'importer sans mettre .jsx ou .js
+    "target": "esnext",
+    "types": ["vite/client"], // pour que TypeScript reconnaisse les types spécifiques à Vite, comme import.meta.env
+    
+    // For nodejs:
+    // "lib": ["esnext"],
+    // "types": ["node"],
+    // and npm install -D @types/node
+
+    // Other Outputs
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "allowJs": true, // Permet de mélanger des fichiers .js/.jsx avec tes nouveaux .ts/.tsx
+    "esModuleInterop": true, // Pour importer des bibliothèques classiques sans erreur
+    "forceConsistentCasingInFileNames": true,
+
+    // Style Options
+    // "noImplicitReturns": true,
+    // "noImplicitOverride": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "noFallthroughCasesInSwitch": true,
+    // "noPropertyAccessFromIndexSignature": true,
+
+    // Recommended Options
+    "strict": true,
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": false, // Mis à false pour éviter des erreurs d'importation trop strictes
+    "isolatedModules": true,
+    // "noUncheckedSideEffectImports": true, // Parfois problématique avec les fichiers CSS
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+  },
+  "include": ["src"], // Dit à TS de regarder tout ce qui est dans le dossier src
+  "exclude": ["node_modules"]
+}

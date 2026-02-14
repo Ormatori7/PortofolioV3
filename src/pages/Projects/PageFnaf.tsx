@@ -1,14 +1,23 @@
-import Page3DProject from "../../components/ProjectCardPage3D.jsx";
-import ContinuousCarousel from "../../components/Carrousel.jsx";
-import BoxCarousel from "../../components/CarrouselArrow.jsx";
-import { supabase } from "../../supabaseClient.js";
+//pas d'extention car Typescript n'en a pas besoin
+import Page3DProject from "../../components/ProjectCardPage3D";
+import ContinuousCarousel from "../../components/Carrousel";
+import BoxCarousel from "../../components/CarrouselArrow";
+import { supabase } from "../../supabaseClient";
 import { useState, useEffect } from "react";
+import { Project, Card3D, GalleryItem, AllData } from "../../types";
 
-function FnafPage({}) {
+
+
+function FnafPage() {
   //variable et la function de mise a jour
-  const [dataForPage, setDataForPage] = useState(null);
+  //project car c'est la notice de types.ts et dit que s'il existe il aura cette structure
+  // Autorise le sac à être soit un "AllData" soit "vide" , et initialise le sac vide
+  
+  const [dataForPage, setDataForPage] = useState<AllData | null>(null);
   useEffect(() => {
     const chargementDonnes = async () => {
+      //------LA PARTIE DEBALLAGE DES DONNES----------
+
       //-----LES INFOS DE LA PAGE FNAF-----
       const { data: projectInfo, error: projectError } = await supabase
         .from("Project_list")
@@ -32,14 +41,23 @@ function FnafPage({}) {
         .order("position", { ascending: true }); //dans l'ordre
 
       //si aucune erreur dans les trois requetes alors on continue
-      if (!projectError && !cardsError && !galleryError) {
+      // on ajoute aussi le fait de verifier que projectInfo possede bien qlq chose
+      if (!projectError && !cardsError && !galleryError && projectInfo && projectCards && galleryImages) {
+        // On "étiquette" les listes venant de Supabase et on les donne a des variables
+        //c'est le test de CONFIANCE (tu jure que variable1 a la structure de GalleryItem)
+        const safeProjectInfo = projectInfo as Project; //pas de [] car seul projet
+        const safeGallery = galleryImages as GalleryItem[];
+        const safeCards = projectCards as Card3D[];
+        
         setDataForPage({
-          ...projectInfo, // On va chercher ttes les infos d'un coup pour ne pas devoir les ecrire une par une pour la page fnaf
-          HugeCardData: projectCards, // On met le tableau des cartes au bon endroit
-          MenuImage: galleryImages.filter((img) => img.type === "auto"), // On met le tableau filtré des images du carrousel auto
+          ...safeProjectInfo, // On va chercher ttes les infos d'un coup pour ne pas devoir les ecrire une par une pour la page fnaf
+          //on prend aussi les variable etiqueté et non celle qui sont floues
+          //on créer les variabel en vert poour stocker les données etiqueté
+          HugeCardData: safeCards, // elle n'apparait pas dans la function Page3DProject car elle est utilisé a l'interieur 
+          MenuImage: safeGallery.filter((img) => img.type === "auto"), // On met le tableau filtré des images du carrousel auto
           // On filtre pour ne garder que les lignes de type "map"
           // On utilise .map pour n'extraire que l'URL de l'image (on transforme l'objet en texte)
-          MapImage: galleryImages
+          MapImage: safeGallery
             .filter((img) => img.type === "map")
             .map((img) => img.image),
         });
@@ -63,8 +81,9 @@ function FnafPage({}) {
   }
 
   return (
+    // ici pas de passage de HugeCardData car elle est passé dans dataForPage directement
     <>
-      <Page3DProject datapage={dataForPage} />
+      <Page3DProject datapage={dataForPage} /> 
 
       <div className="pb-20 pt-15">
         <h2 className="text-center text-white text-3xl font-black uppercase tracking-tighter mb-10">

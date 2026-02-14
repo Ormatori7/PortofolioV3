@@ -1,6 +1,6 @@
 import PageDevProject from "../../components/ProjectCardPageDev";
 import ContinuousCarousel from "../../components/Carrousel.jsx";
-import { supabase } from "../../supabaseClient.js";
+import { supabase } from "../../supabaseClient.ts";
 import { useState, useEffect } from "react";
 
 function PythonAi() {

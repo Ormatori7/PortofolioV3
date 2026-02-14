@@ -1,6 +1,6 @@
 import Page3DProject from "../../components/ProjectCardPage3D.jsx";
 import ContinuousCarousel from "../../components/Carrousel.jsx";
-import { supabase } from "../../supabaseClient.js";
+import { supabase } from "../../supabaseClient.ts";
 import { useState, useEffect } from "react";
 
 

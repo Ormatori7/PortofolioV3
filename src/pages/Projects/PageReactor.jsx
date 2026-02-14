@@ -5,7 +5,7 @@ import { Loader } from "@react-three/drei";
 import { OrbitControls, Environment, ContactShadows } from "@react-three/drei";
 import { MeshReflectorMaterial } from "@react-three/drei";
 import PageDevProject from "../../components/ProjectCardPageDev";
-import { supabase } from "../../supabaseClient.js";
+import { supabase } from "../../supabaseClient.ts";
 import { useState, useEffect } from "react";
 
 function ModelInPage() {

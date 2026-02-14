@@ -13,6 +13,7 @@ import {
   SiUnrealengine,
   SiPython,
   SiThreedotjs,
+  SiDiscord,
 } from "react-icons/si";
 import { HiUser, HiCode, HiCube, HiAcademicCap } from "react-icons/hi";
 import { Github } from "lucide-react";
@@ -139,6 +140,16 @@ function ProfilFunction() {
                     className="hover:text-blue-400 cursor-pointer transition-colors"
                   />
                 </a>
+                <a
+                  href="https://discord.com/users/1249482726667456572"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <SiDiscord
+                    size={22}
+                    className="hover:text-blue-400 cursor-pointer transition-colors transition-250"
+                  />
+                </a>
               </div>
             </div>
           </motion.div>
@@ -243,7 +254,6 @@ function ProfilFunction() {
                 ))}
             </div>
           </motion.div>
-          
         </div>
       </motion.div>
     </section>
